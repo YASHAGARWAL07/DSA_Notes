@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/yashagarwal/Desktop/DSA/strings/output/string'
+relocations:     []
+...

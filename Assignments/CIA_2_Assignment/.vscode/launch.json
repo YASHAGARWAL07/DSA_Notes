@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/yashagarwal/Programming/DSA/CIA_2_Assignment",
+      "program": "/Users/yashagarwal/Programming/DSA/CIA_2_Assignment/build/Debug/outDebug"
+    }
+  ]
+}
