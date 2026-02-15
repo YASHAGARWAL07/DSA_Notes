@@ -1,129 +1,170 @@
-/************************************************************
+/**************************************************************
         OBJECT ORIENTED PROGRAMMING (OOPS) - C++
-        COMPLETE & DETAILED NOTES (WITH CODE)
-        Suitable for:
-        ✔ College Exams
-        ✔ Interviews
+        MASTER COMPLETE NOTES (Written in My Own Style)
+
+        ✔ Based on Class Notes
+        ✔ College Exam Ready
+        ✔ Interview Ready
         ✔ Concept Building
-************************************************************/
+**************************************************************/
 
 #include <iostream>
 using namespace std;
 
 /*
-============================================================
-1. PROGRAMMING PARADIGM
-------------------------------------------------------------
-Paradigm = Style / approach of programming
+==============================================================
+1️⃣ PROGRAMMING PARADIGM
+==============================================================
 
-Main Paradigms:
+Programming Paradigm = Style / approach of programming
+
+Main Types:
 1) Procedural Programming
 2) Object Oriented Programming (OOP)
-============================================================
+
+--------------------------------------------------------------
+PROCEDURAL PROGRAMMING
+--------------------------------------------------------------
+• Focus on functions
+• Top-down approach
+• Data shared among functions
+• No data hiding
+• Less secure
+• Difficult to manage large programs
+
+Example: C
+
+--------------------------------------------------------------
+OBJECT ORIENTED PROGRAMMING (OOP)
+--------------------------------------------------------------
+• Focus on objects
+• Bottom-up approach
+• Data + Functions wrapped together
+• Supports data hiding
+• High security
+• Easy maintenance
+• Real world modelling
+
+Examples: C++, Java, Python, C#
 */
 
 /*
-============================================================
-2. PROCEDURAL PROGRAMMING
-------------------------------------------------------------
-- Focuses on functions
-- Data is shared among functions
-- Top-down approach
-- Low security
-- Difficult to maintain large programs
+==============================================================
+2️⃣ ADVANTAGES OF OOPS
+==============================================================
 
-Example Language: C
-============================================================
+✔ Code Reusability
+✔ Data Security
+✔ Easy Debugging
+✔ Better Maintainability
+✔ Real World Representation
+✔ Scalable for Large Projects
+
+--------------------------------------------------------------
+DISADVANTAGES
+--------------------------------------------------------------
+✘ Complex for beginners
+✘ Higher memory usage
+✘ Slightly slower sometimes
 */
 
 /*
-============================================================
-3. OBJECT ORIENTED PROGRAMMING (OOP)
-------------------------------------------------------------
-- Focuses on objects
-- Objects contain data + functions
-- Bottom-up approach
-- High data security
-- Better maintainability
+==============================================================
+3️⃣ HISTORY (SHORT)
+==============================================================
 
-Languages:
-C++, Java, Python, C#
-============================================================
+1960s → Simula (First OOP concept)
+1980s → C++ (Bjarne Stroustrup)
+1990s → Java
+2000s → C#
 */
 
 /*
-============================================================
-4. CLASS
-------------------------------------------------------------
-- Blueprint / template
-- User-defined data type
-- No memory allocation
+==============================================================
+4️⃣ CLASS
+==============================================================
+
+Class = Blueprint / Template
+
+• User-defined data type
+• No memory allocated until object is created
 
 Contains:
-1) Data Members (variables)
-2) Member Functions (methods)
-============================================================
+1) Data Members
+2) Member Functions
 */
 
 class Student {
 public:
-    int roll;        // data member
-    string name;     // data member
+    int roll;
+    string name;
 
-    void display() { // member function
+    void display() {
         cout << "Roll: " << roll << endl;
         cout << "Name: " << name << endl;
     }
 };
 
 /*
-============================================================
-5. OBJECT
-------------------------------------------------------------
-- Instance of a class
-- Memory allocated when object is created
+==============================================================
+5️⃣ OBJECT
+==============================================================
 
-Syntax:
-ClassName objectName;
-============================================================
+Object = Instance of a class
+
+• Memory allocated when object is created
+• Object has:
+    1) Identity
+    2) State
+    3) Behavior
 */
 
 /*
-============================================================
-6. ACCESS SPECIFIERS
-------------------------------------------------------------
+==============================================================
+6️⃣ ACCESS SPECIFIERS
+==============================================================
+
 public:
-- Accessible everywhere
+    Accessible everywhere
 
 private:
-- Accessible only inside class
-- Default access specifier
+    Accessible only inside class
+    Default access specifier
 
 protected:
-- Accessible in class & derived class
-============================================================
+    Accessible inside class + derived class
 */
 
 /*
-============================================================
-7. ENCAPSULATION
-------------------------------------------------------------
-Definition:
-Wrapping data and methods into a single unit (class)
+==============================================================
+7️⃣ FOUR PILLARS OF OOPS
+==============================================================
 
-Why?
-- Data security
-- Controlled access
+1) Encapsulation
+2) Abstraction
+3) Inheritance
+4) Polymorphism
+*/
+
+/*
+--------------------------------------------------------------
+1️⃣ ENCAPSULATION
+--------------------------------------------------------------
+
+Wrapping data + functions into a single unit (class)
 
 Achieved by:
-- Making data members private
-- Using getter & setter
-============================================================
+• Private data members
+• Public getter/setter
+
+Ensures:
+✔ Data security
+✔ Controlled access
 */
 
 class BankAccount {
 private:
-    int balance;  // hidden data
+    int balance;
 
 public:
     void setBalance(int amt) {
@@ -136,24 +177,24 @@ public:
 };
 
 /*
-============================================================
-8. ABSTRACTION
-------------------------------------------------------------
-Definition:
-Hiding implementation details and showing only essential features
+--------------------------------------------------------------
+2️⃣ ABSTRACTION
+--------------------------------------------------------------
+
+Hiding implementation details
+Showing only essential features
 
 Example:
-- ATM (you know withdraw, not internal logic)
+ATM → You know withdraw(), not internal logic
 
-Achieved by:
-1) Abstract class
-2) Pure virtual function
-============================================================
+Achieved using:
+• Abstract class
+• Pure virtual function
 */
 
 class Shape {
 public:
-    virtual void draw() = 0; // pure virtual function
+    virtual void draw() = 0;   // Pure Virtual Function
 };
 
 class Circle : public Shape {
@@ -164,22 +205,16 @@ public:
 };
 
 /*
-============================================================
-9. INHERITANCE
-------------------------------------------------------------
-Definition:
-One class acquires properties of another class
+--------------------------------------------------------------
+3️⃣ INHERITANCE
+--------------------------------------------------------------
 
-Why?
-- Code reusability
-- Reduces redundancy
+One class acquires properties of another class
 
 Syntax:
 class Child : accessSpecifier Parent
-============================================================
 */
 
-// Base class
 class Animal {
 public:
     void eat() {
@@ -187,7 +222,6 @@ public:
     }
 };
 
-// Derived class
 class Dog : public Animal {
 public:
     void bark() {
@@ -196,36 +230,27 @@ public:
 };
 
 /*
-============================================================
-10. TYPES OF INHERITANCE
-------------------------------------------------------------
+Types of Inheritance:
 1) Single
 2) Multiple
 3) Multilevel
 4) Hierarchical
 5) Hybrid
-============================================================
 */
 
 /*
-============================================================
-11. POLYMORPHISM
-------------------------------------------------------------
-Meaning:
-One name, many forms
+--------------------------------------------------------------
+4️⃣ POLYMORPHISM
+--------------------------------------------------------------
+
+One name → Multiple forms
 
 Types:
-1) Compile-time Polymorphism
-   - Function Overloading
-   - Operator Overloading
-
-2) Runtime Polymorphism
-   - Function Overriding
-   - Virtual Function
-============================================================
+1) Compile-time (Overloading)
+2) Run-time (Overriding)
 */
 
-// Function Overloading
+/* Function Overloading */
 class Calculator {
 public:
     int add(int a, int b) {
@@ -237,17 +262,7 @@ public:
     }
 };
 
-/*
-============================================================
-12. FUNCTION OVERRIDING
-------------------------------------------------------------
-- Same function name
-- Same parameters
-- Different classes
-- Requires inheritance
-============================================================
-*/
-
+/* Runtime Polymorphism */
 class Base {
 public:
     virtual void show() {
@@ -257,42 +272,43 @@ public:
 
 class Derived : public Base {
 public:
-    void show() {
+    void show() override {
         cout << "Derived class show()" << endl;
     }
 };
 
 /*
-============================================================
-13. CONSTRUCTOR
-------------------------------------------------------------
-- Special member function
-- Same name as class
-- No return type
-- Automatically called
+==============================================================
+8️⃣ CONSTRUCTOR
+==============================================================
+
+• Special member function
+• Same name as class
+• No return type
+• Automatically called
 
 Types:
 1) Default
 2) Parameterized
 3) Copy
-============================================================
 */
 
 class Demo {
 public:
     Demo() {
-        cout << "Default Constructor Called" << endl;
+        cout << "Constructor Called" << endl;
     }
 };
 
 /*
-============================================================
-14. DESTRUCTOR
-------------------------------------------------------------
-- Called automatically
-- Frees memory/resources
-- Name starts with ~
-============================================================
+==============================================================
+9️⃣ DESTRUCTOR
+==============================================================
+
+• Called automatically when object destroyed
+• Used to free resources
+• Name starts with ~
+• No return type
 */
 
 class Sample {
@@ -303,12 +319,12 @@ public:
 };
 
 /*
-============================================================
-15. THIS POINTER
-------------------------------------------------------------
-- Holds address of current object
-- Used to resolve name conflict
-============================================================
+==============================================================
+🔟 THIS POINTER
+==============================================================
+
+• Holds address of current object
+• Used to resolve name conflict
 */
 
 class Box {
@@ -320,71 +336,76 @@ public:
 };
 
 /*
-============================================================
-16. STATIC DATA MEMBER
-------------------------------------------------------------
-- Shared among all objects
-- Single copy
-============================================================
+==============================================================
+1️⃣1️⃣ STATIC DATA MEMBER
+==============================================================
+
+• Belongs to class
+• Shared among all objects
+• Single copy exists
+• Must be defined outside class
 */
 
 class Counter {
 public:
     static int count;
 };
+
 int Counter::count = 0;
 
 /*
-============================================================
-17. VIRTUAL FUNCTION
-------------------------------------------------------------
-- Function call resolved at runtime
-- Achieves runtime polymorphism
-============================================================
+==============================================================
+1️⃣2️⃣ VIRTUAL FUNCTION
+==============================================================
+
+• Enables runtime polymorphism
+• Function call resolved at runtime
 */
 
 /*
-============================================================
-18. DIAMOND PROBLEM
-------------------------------------------------------------
+==============================================================
+1️⃣3️⃣ DIAMOND PROBLEM
+==============================================================
+
 Occurs in multiple inheritance
 
-Solved using:
-- virtual inheritance
-============================================================
+Solution:
+Use virtual inheritance
 */
 
 /*
-============================================================
-19. ADVANTAGES OF OOPS
-------------------------------------------------------------
-✔ Code reusability
-✔ Data security
-✔ Easy debugging
-✔ Real-world modeling
-✔ Scalability
-============================================================
+==============================================================
+1️⃣4️⃣ SCOPE RESOLUTION OPERATOR (::)
+==============================================================
+
+Used to define function outside class
+Used to access static members
+
+Example:
+ClassName::variable
 */
 
 /*
-============================================================
-20. DISADVANTAGES OF OOPS
-------------------------------------------------------------
-✘ Complex syntax
-✘ Higher memory usage
-✘ Slower execution sometimes
-============================================================
+==============================================================
+1️⃣5️⃣ GLOBAL vs LOCAL CLASS
+==============================================================
+
+Global Class:
+    Defined outside all functions
+
+Local Class:
+    Defined inside a function
 */
 
 /*
-============================================================
-21. MAIN FUNCTION (DEMO)
-============================================================
+==============================================================
+1️⃣6️⃣ MAIN FUNCTION DEMO
+==============================================================
 */
 
 int main() {
 
-    // Object creation
+    // Object Creation
     Student s;
     s.roll = 1;
     s.name = "Yash";
@@ -404,11 +425,12 @@ int main() {
     d.eat();
     d.bark();
 
-    // Polymorphism
-    Calculator c;
-    cout << c.add(2, 3) << endl;
-    cout << c.add(2, 3, 4) << endl;
+    // Compile-time Polymorphism
+    Calculator calc;
+    cout << calc.add(2, 3) << endl;
+    cout << calc.add(2, 3, 4) << endl;
 
+    // Runtime Polymorphism
     Base* obj = new Derived();
     obj->show();
 
@@ -419,6 +441,6 @@ int main() {
     return 0;
 }
 
-/************************************************************
-                    END OF OOPS NOTES
-************************************************************/
+/**************************************************************
+                    END OF MASTER OOPS NOTES
+**************************************************************/
