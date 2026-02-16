@@ -1,87 +1,133 @@
-/*========================================================
+/************************************************************
         WHY EMPTY CLASS SIZE IS 1 BYTE (C++)
-==========================================================
+************************************************************/
 
-Q) Why does an empty class have size 1 byte in C++?
+/*
+============================================================
+1. QUESTION
+------------------------------------------------------------
+Why does an empty class have size 1 byte in C++?
+============================================================
+*/
 
-----------------------------------------------------------
-KEY RULE:
-----------------------------------------------------------
-→ In C++, every object MUST have a unique memory address.
-→ Size of an object can NEVER be 0.
+/*
+============================================================
+2. KEY RULE
+------------------------------------------------------------
+- Every object must have a unique memory address.
+- Size of an object can never be 0.
+============================================================
+*/
 
-----------------------------------------------------------
-EXPLANATION:
-----------------------------------------------------------
-If an empty class had size = 0 bytes:
+/*
+============================================================
+3. EXPLANATION
+------------------------------------------------------------
+If an empty class had size = 0:
 
-    class A {};
-    A a1, a2;
+class A {};
+A a1, a2;
 
-Both objects would point to the SAME memory address,
-which breaks:
-• Object identity
-• this pointer
-• Address-based operations
+Both objects would point to the same memory location.
 
-So compiler assigns the MINIMUM POSSIBLE SIZE = 1 BYTE.
+This would break:
+- Object identity
+- this pointer behavior
+- Address-based operations
 
-----------------------------------------------------------
-IMPORTANT POINTS:
-----------------------------------------------------------
-1) Empty class has NO data members
-2) Size is NOT for data, it is for IDENTITY
-3) 1 byte is the minimum allocatable memory
-4) Ensures different objects have different addresses
+To prevent this, the compiler assigns
+minimum possible size = 1 byte.
 
-----------------------------------------------------------
-EXAMPLE:
-----------------------------------------------------------
+This 1 byte is not for data,
+it is for object identity.
+============================================================
+*/
+
+/*
+============================================================
+4. IMPORTANT POINTS
+------------------------------------------------------------
+1) Empty class has no data members.
+2) Size is for maintaining unique identity.
+3) 1 byte is the smallest allocatable memory unit.
+4) Ensures different objects have different addresses.
+============================================================
+*/
+
+/*
+============================================================
+5. EXAMPLE
+============================================================
+*/
+
 #include <iostream>
 using namespace std;
 
 class Empty {};
 
 int main() {
+
     Empty e1, e2;
-    cout << sizeof(Empty) << endl; // Output: 1
+
+    cout << sizeof(Empty) << endl;   // Output: 1
+    cout << &e1 << endl;            // Different address
+    cout << &e2 << endl;            // Different address
+
+    return 0;
 }
 
-----------------------------------------------------------
-OUTPUT:
-----------------------------------------------------------
-1
-
-----------------------------------------------------------
-EMPTY STRUCT:
-----------------------------------------------------------
+/*
+============================================================
+6. EMPTY STRUCT
+------------------------------------------------------------
 struct A {};
-sizeof(A) → 1 byte (same rule applies)
+sizeof(A) = 1 byte
 
-----------------------------------------------------------
-EMPTY BASE CLASS OPTIMIZATION (EBO):
-----------------------------------------------------------
+Same rule applies to struct.
+============================================================
+*/
+
+/*
+============================================================
+7. EMPTY BASE CLASS OPTIMIZATION (EBO)
+------------------------------------------------------------
+
 class A {};        // size = 1
-class B : A {      // A takes NO extra space
+
+class B : public A {
     int x;
 };
 
-sizeof(B) → size of int (not 1 + int)
+Normally:
+Size = 1 + sizeof(int)
 
-→ Compiler optimizes empty base classes.
+But compiler applies optimization.
 
-----------------------------------------------------------
-INTERVIEW ONE-LINER:
-----------------------------------------------------------
+Result:
+sizeof(B) = sizeof(int)
+
+Empty base class does not increase size.
+
+This is called:
+Empty Base Class Optimization (EBO)
+============================================================
+*/
+
+/*
+============================================================
+8. INTERVIEW ONE-LINER
+------------------------------------------------------------
 "An empty class has size 1 byte to ensure every object
 has a unique memory address."
+============================================================
+*/
 
-----------------------------------------------------------
-EXAM REMEMBER:
-----------------------------------------------------------
-• Empty class  → 1 byte
-• Empty object → unique address
-• Zero size objects are NOT allowed
-
-==========================================================
-*/ 
+/*
+============================================================
+9. EXAM REMEMBER
+------------------------------------------------------------
+- Empty class size = 1 byte
+- Objects must have unique addresses
+- Zero-size objects are not allowed in C++
+============================================================
+*/

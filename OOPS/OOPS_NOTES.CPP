@@ -1,97 +1,83 @@
-/**************************************************************
+/************************************************************
         OBJECT ORIENTED PROGRAMMING (OOPS) - C++
-        MASTER COMPLETE NOTES (Written in My Own Style)
-
-        ✔ Based on Class Notes
-        ✔ College Exam Ready
-        ✔ Interview Ready
-        ✔ Concept Building
-**************************************************************/
+        MASTER NOTES
+************************************************************/
 
 #include <iostream>
 using namespace std;
 
 /*
-==============================================================
-1️⃣ PROGRAMMING PARADIGM
-==============================================================
-
-Programming Paradigm = Style / approach of programming
+============================================================
+1. PROGRAMMING PARADIGM
+------------------------------------------------------------
+Programming Paradigm = Style / approach of programming.
 
 Main Types:
 1) Procedural Programming
-2) Object Oriented Programming (OOP)
+2) Object Oriented Programming
+============================================================
+*/
 
---------------------------------------------------------------
+/*
+------------------------------------------------------------
 PROCEDURAL PROGRAMMING
---------------------------------------------------------------
-• Focus on functions
-• Top-down approach
-• Data shared among functions
-• No data hiding
-• Less secure
-• Difficult to manage large programs
+------------------------------------------------------------
+- Focus on functions
+- Top-down approach
+- Data shared among functions
+- No data hiding
+- Less secure
+- Difficult for large programs
 
 Example: C
+*/
 
---------------------------------------------------------------
-OBJECT ORIENTED PROGRAMMING (OOP)
---------------------------------------------------------------
-• Focus on objects
-• Bottom-up approach
-• Data + Functions wrapped together
-• Supports data hiding
-• High security
-• Easy maintenance
-• Real world modelling
+/*
+------------------------------------------------------------
+OBJECT ORIENTED PROGRAMMING
+------------------------------------------------------------
+- Focus on objects
+- Bottom-up approach
+- Data + functions wrapped together
+- Supports data hiding
+- High security
+- Easy maintenance
+- Real world modelling
 
 Examples: C++, Java, Python, C#
+============================================================
 */
 
 /*
-==============================================================
-2️⃣ ADVANTAGES OF OOPS
-==============================================================
+============================================================
+2. ADVANTAGES AND DISADVANTAGES
+------------------------------------------------------------
 
-✔ Code Reusability
-✔ Data Security
-✔ Easy Debugging
-✔ Better Maintainability
-✔ Real World Representation
-✔ Scalable for Large Projects
+Advantages:
+- Code reusability
+- Data security
+- Easy debugging
+- Better maintainability
+- Real world modelling
+- Scalable systems
 
---------------------------------------------------------------
-DISADVANTAGES
---------------------------------------------------------------
-✘ Complex for beginners
-✘ Higher memory usage
-✘ Slightly slower sometimes
+Disadvantages:
+- Complex for beginners
+- Higher memory usage
+- Slightly slower in some cases
+============================================================
 */
 
 /*
-==============================================================
-3️⃣ HISTORY (SHORT)
-==============================================================
+============================================================
+3. CLASS
+------------------------------------------------------------
+Class is a blueprint or template.
 
-1960s → Simula (First OOP concept)
-1980s → C++ (Bjarne Stroustrup)
-1990s → Java
-2000s → C#
-*/
-
-/*
-==============================================================
-4️⃣ CLASS
-==============================================================
-
-Class = Blueprint / Template
-
-• User-defined data type
-• No memory allocated until object is created
-
-Contains:
-1) Data Members
-2) Member Functions
+- User-defined data type
+- No memory allocated until object is created
+- Contains data members and member functions
+============================================================
 */
 
 class Student {
@@ -106,60 +92,56 @@ public:
 };
 
 /*
-==============================================================
-5️⃣ OBJECT
-==============================================================
+============================================================
+4. OBJECT
+------------------------------------------------------------
+Object is an instance of a class.
 
-Object = Instance of a class
+Memory is allocated when object is created.
 
-• Memory allocated when object is created
-• Object has:
-    1) Identity
-    2) State
-    3) Behavior
+Object has:
+- Identity
+- State
+- Behavior
+============================================================
 */
 
 /*
-==============================================================
-6️⃣ ACCESS SPECIFIERS
-==============================================================
-
+============================================================
+5. ACCESS SPECIFIERS
+------------------------------------------------------------
 public:
     Accessible everywhere
 
 private:
     Accessible only inside class
-    Default access specifier
+    Default access in class
 
 protected:
-    Accessible inside class + derived class
+    Accessible inside class and derived class
+============================================================
 */
 
 /*
-==============================================================
-7️⃣ FOUR PILLARS OF OOPS
-==============================================================
-
+============================================================
+6. FOUR PILLARS OF OOPS
+------------------------------------------------------------
 1) Encapsulation
 2) Abstraction
 3) Inheritance
 4) Polymorphism
+============================================================
 */
 
 /*
---------------------------------------------------------------
-1️⃣ ENCAPSULATION
---------------------------------------------------------------
+------------------------------------------------------------
+ENCAPSULATION
+------------------------------------------------------------
+Wrapping data and functions into a class.
 
-Wrapping data + functions into a single unit (class)
-
-Achieved by:
-• Private data members
-• Public getter/setter
-
-Ensures:
-✔ Data security
-✔ Controlled access
+Achieved using:
+- Private data members
+- Public getter and setter functions
 */
 
 class BankAccount {
@@ -177,24 +159,20 @@ public:
 };
 
 /*
---------------------------------------------------------------
-2️⃣ ABSTRACTION
---------------------------------------------------------------
-
-Hiding implementation details
-Showing only essential features
-
-Example:
-ATM → You know withdraw(), not internal logic
+------------------------------------------------------------
+ABSTRACTION
+------------------------------------------------------------
+Hiding implementation details and exposing only
+essential features.
 
 Achieved using:
-• Abstract class
-• Pure virtual function
+- Abstract class
+- Pure virtual function
 */
 
 class Shape {
 public:
-    virtual void draw() = 0;   // Pure Virtual Function
+    virtual void draw() = 0;
 };
 
 class Circle : public Shape {
@@ -205,11 +183,10 @@ public:
 };
 
 /*
---------------------------------------------------------------
-3️⃣ INHERITANCE
---------------------------------------------------------------
-
-One class acquires properties of another class
+------------------------------------------------------------
+INHERITANCE
+------------------------------------------------------------
+One class acquires properties of another.
 
 Syntax:
 class Child : accessSpecifier Parent
@@ -230,27 +207,25 @@ public:
 };
 
 /*
-Types of Inheritance:
-1) Single
-2) Multiple
-3) Multilevel
-4) Hierarchical
-5) Hybrid
+Types:
+- Single
+- Multiple
+- Multilevel
+- Hierarchical
+- Hybrid
 */
 
 /*
---------------------------------------------------------------
-4️⃣ POLYMORPHISM
---------------------------------------------------------------
-
-One name → Multiple forms
+------------------------------------------------------------
+POLYMORPHISM
+------------------------------------------------------------
+One name, multiple forms.
 
 Types:
-1) Compile-time (Overloading)
-2) Run-time (Overriding)
+1) Compile-time
+2) Run-time
 */
 
-/* Function Overloading */
 class Calculator {
 public:
     int add(int a, int b) {
@@ -262,7 +237,6 @@ public:
     }
 };
 
-/* Runtime Polymorphism */
 class Base {
 public:
     virtual void show() {
@@ -278,19 +252,14 @@ public:
 };
 
 /*
-==============================================================
-8️⃣ CONSTRUCTOR
-==============================================================
-
-• Special member function
-• Same name as class
-• No return type
-• Automatically called
-
-Types:
-1) Default
-2) Parameterized
-3) Copy
+============================================================
+7. CONSTRUCTOR
+------------------------------------------------------------
+- Special member function
+- Same name as class
+- No return type
+- Automatically called
+============================================================
 */
 
 class Demo {
@@ -301,14 +270,13 @@ public:
 };
 
 /*
-==============================================================
-9️⃣ DESTRUCTOR
-==============================================================
-
-• Called automatically when object destroyed
-• Used to free resources
-• Name starts with ~
-• No return type
+============================================================
+8. DESTRUCTOR
+------------------------------------------------------------
+- Called automatically when object is destroyed
+- Used to release resources
+- Name starts with '~'
+============================================================
 */
 
 class Sample {
@@ -319,12 +287,12 @@ public:
 };
 
 /*
-==============================================================
-🔟 THIS POINTER
-==============================================================
-
-• Holds address of current object
-• Used to resolve name conflict
+============================================================
+9. THIS POINTER
+------------------------------------------------------------
+- Refers to current object
+- Used to resolve name conflict
+============================================================
 */
 
 class Box {
@@ -336,14 +304,14 @@ public:
 };
 
 /*
-==============================================================
-1️⃣1️⃣ STATIC DATA MEMBER
-==============================================================
-
-• Belongs to class
-• Shared among all objects
-• Single copy exists
-• Must be defined outside class
+============================================================
+10. STATIC DATA MEMBER
+------------------------------------------------------------
+- Belongs to class
+- Shared among all objects
+- Only one copy exists
+- Must be defined outside class
+============================================================
 */
 
 class Counter {
@@ -354,93 +322,87 @@ public:
 int Counter::count = 0;
 
 /*
-==============================================================
-1️⃣2️⃣ VIRTUAL FUNCTION
-==============================================================
-
-• Enables runtime polymorphism
-• Function call resolved at runtime
+============================================================
+11. VIRTUAL FUNCTION
+------------------------------------------------------------
+- Enables runtime polymorphism
+- Function call resolved at runtime
+============================================================
 */
 
 /*
-==============================================================
-1️⃣3️⃣ DIAMOND PROBLEM
-==============================================================
-
-Occurs in multiple inheritance
+============================================================
+12. DIAMOND PROBLEM
+------------------------------------------------------------
+Occurs in multiple inheritance.
 
 Solution:
-Use virtual inheritance
+Use virtual inheritance.
+============================================================
 */
 
 /*
-==============================================================
-1️⃣4️⃣ SCOPE RESOLUTION OPERATOR (::)
-==============================================================
-
-Used to define function outside class
-Used to access static members
+============================================================
+13. SCOPE RESOLUTION OPERATOR (::)
+------------------------------------------------------------
+Used to:
+- Define functions outside class
+- Access static members
 
 Example:
 ClassName::variable
+============================================================
 */
 
 /*
-==============================================================
-1️⃣5️⃣ GLOBAL vs LOCAL CLASS
-==============================================================
-
+============================================================
+14. GLOBAL VS LOCAL CLASS
+------------------------------------------------------------
 Global Class:
     Defined outside all functions
 
 Local Class:
     Defined inside a function
+============================================================
 */
 
 /*
-==============================================================
-1️⃣6️⃣ MAIN FUNCTION DEMO
-==============================================================
+============================================================
+MAIN FUNCTION DEMO
+============================================================
 */
 
 int main() {
 
-    // Object Creation
     Student s;
     s.roll = 1;
     s.name = "Yash";
     s.display();
 
-    // Encapsulation
     BankAccount acc;
     acc.setBalance(10000);
     cout << "Balance: " << acc.getBalance() << endl;
 
-    // Abstraction
     Shape* sp = new Circle();
     sp->draw();
 
-    // Inheritance
     Dog d;
     d.eat();
     d.bark();
 
-    // Compile-time Polymorphism
     Calculator calc;
     cout << calc.add(2, 3) << endl;
     cout << calc.add(2, 3, 4) << endl;
 
-    // Runtime Polymorphism
     Base* obj = new Derived();
     obj->show();
 
-    // Constructor & Destructor
     Demo d1;
     Sample s1;
 
     return 0;
 }
 
-/**************************************************************
-                    END OF MASTER OOPS NOTES
-**************************************************************/
+/************************************************************
+                    END OF MASTER NOTES
+************************************************************/

@@ -1,110 +1,88 @@
 /************************************************************
- *              ABSTRACTION IN C++ (OOPS)
- *
- *  Abstraction is one of the 4 pillars of OOPS:
- *  1. Encapsulation
- *  2. Abstraction
- *  3. Inheritance
- *  4. Polymorphism
- *
- *  This file contains:
- *  ✔ Concept
- *  ✔ Real-life examples
- *  ✔ Abstract class
- *  ✔ Pure virtual function
- *  ✔ Interface concept
- *  ✔ Interview points
- ************************************************************/
+        ABSTRACTION IN C++ (OOPS)
+************************************************************/
 
 #include <iostream>
 using namespace std;
 
 /*
 ============================================================
-1️⃣ WHAT IS ABSTRACTION?
-============================================================
-
-Abstraction means:
-➡ Hiding implementation details
-➡ Showing only essential features
+1. INTRODUCTION TO ABSTRACTION
+------------------------------------------------------------
+Abstraction means hiding implementation details
+and showing only essential features.
 
 In simple words:
-User ko sirf "WHAT" pata hota hai,
-lekin "HOW" internally kaam karta hai, woh hidden rehta hai.
+User knows WHAT the system does,
+but does not know HOW it works internally.
 
 Example:
 ATM Machine
-We know:
-✔ Insert card
-✔ Enter PIN
-✔ Withdraw money
+- Insert card
+- Enter PIN
+- Withdraw money
 
-But we DON'T know:
+Internal processes like:
 - Database queries
 - Encryption
-- Bank server logic
-
-That hidden internal working = Abstraction
+- Server logic
+are hidden.
+============================================================
 */
 
 /*
 ============================================================
-2️⃣ WHY DO WE NEED ABSTRACTION?
+2. WHY ABSTRACTION IS REQUIRED
+------------------------------------------------------------
+- Reduces code complexity
+- Improves security
+- Makes code clean and modular
+- Focuses on essential behavior
+- Prevents misuse of internal logic
 ============================================================
-
-✔ Reduces code complexity
-✔ Improves security
-✔ Makes code clean
-✔ Focus on important features
-✔ Prevents misuse of internal logic
 */
 
 /*
 ============================================================
-3️⃣ HOW TO ACHIEVE ABSTRACTION IN C++?
-============================================================
-
+3. HOW TO ACHIEVE ABSTRACTION IN C++
+------------------------------------------------------------
 In C++, abstraction is achieved using:
 
-1. Abstract Class
-2. Pure Virtual Function
-3. Interfaces (using abstract class)
+1) Abstract Class
+2) Pure Virtual Function
+3) Interface concept (via abstract class)
+============================================================
 */
 
 /*
 ============================================================
-4️⃣ PURE VIRTUAL FUNCTION
-============================================================
-
+4. PURE VIRTUAL FUNCTION
+------------------------------------------------------------
 Syntax:
 virtual return_type function_name() = 0;
 
-If a class has at least one pure virtual function,
+If a class contains at least one pure virtual function,
 it becomes an ABSTRACT CLASS.
 
-Abstract class:
+Properties of Abstract Class:
 - Cannot create object
 - Used as blueprint for derived classes
+- Must be inherited
+============================================================
 */
 
 class Shape {
 
 public:
-    // Pure Virtual Function
-    virtual void draw() = 0;
-
-    /*
-    This makes Shape an ABSTRACT CLASS
-    Now we cannot create object of Shape
-    */
+    virtual void draw() = 0;   // Pure virtual function
 };
 
 /*
 ============================================================
-5️⃣ DERIVED CLASS IMPLEMENTATION
+5. DERIVED CLASS IMPLEMENTATION
+------------------------------------------------------------
+Derived class must override pure virtual function.
 ============================================================
-
-Derived class MUST override pure virtual function
 */
 
 class Circle : public Shape {
@@ -125,86 +103,87 @@ public:
 
 /*
 ============================================================
-6️⃣ MAIN FUNCTION – USING ABSTRACTION
+6. MAIN FUNCTION – USING ABSTRACTION
 ============================================================
 */
 
 int main() {
 
-    // Shape s; ❌ ERROR (Cannot create object of abstract class)
+    // Shape s;  // Error: Cannot create object of abstract class
 
-    Shape *s1;
+    Shape* s1;
     Circle c1;
     Rectangle r1;
 
     s1 = &c1;
-    s1->draw();   // Calls Circle draw()
+    s1->draw();
 
     s1 = &r1;
-    s1->draw();   // Calls Rectangle draw()
+    s1->draw();
 
     return 0;
 }
 
 /*
 ============================================================
-7️⃣ IMPORTANT RULES (EXAM / VIVA)
+7. IMPORTANT RULES
+------------------------------------------------------------
+- A class with at least one pure virtual function
+  becomes abstract.
+- Abstract class cannot have objects.
+- Derived class must override pure virtual function.
+- Abstract class defines interface.
+- Abstraction hides implementation details.
 ============================================================
+*/
 
-✔ If class has at least one pure virtual function,
-  it becomes ABSTRACT CLASS.
-
-✔ Abstract class cannot have object.
-
-✔ Derived class must override pure virtual function.
-
-✔ Used to define interface.
-
-✔ Abstraction hides internal implementation.
-
+/*
 ============================================================
-8️⃣ DIFFERENCE BETWEEN ABSTRACTION & ENCAPSULATION
-============================================================
+8. DIFFERENCE: ABSTRACTION VS ENCAPSULATION
+------------------------------------------------------------
 
 Encapsulation:
     - Hides data
-    - Uses private members
+    - Achieved using private members
+    - Focus on data protection
 
 Abstraction:
     - Hides implementation details
-    - Uses abstract class / pure virtual functions
-
+    - Achieved using abstract class
+    - Focus on behavior
 ============================================================
-9️⃣ INTERVIEW QUESTIONS
-============================================================
+*/
 
+/*
+============================================================
+9. COMMON INTERVIEW QUESTIONS
+------------------------------------------------------------
 Q1. Can abstract class have constructor?
-→ YES
+Answer: Yes.
 
 Q2. Can abstract class have normal functions?
-→ YES
+Answer: Yes.
 
 Q3. Can we create pointer of abstract class?
-→ YES
+Answer: Yes.
 
 Q4. Why abstraction is important?
-→ To reduce complexity & improve security
-
+Answer: To reduce complexity and improve security.
 ============================================================
-🔟 REAL-LIFE EXAMPLE (SHORT)
-============================================================
+*/
 
+/*
+============================================================
+10. REAL-LIFE EXAMPLE
+------------------------------------------------------------
 Car:
-You use:
-✔ Start
-✔ Accelerate
-✔ Brake
+User uses:
+- Start
+- Accelerate
+- Brake
 
-But internal engine mechanism is hidden.
+Internal engine mechanism remains hidden.
 
-That hiding = Abstraction
-
-============================================================
-END OF NOTES ✔
+That hiding of internal working is abstraction.
 ============================================================
 */

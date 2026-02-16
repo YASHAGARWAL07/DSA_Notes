@@ -1,55 +1,50 @@
 /************************************************************
- *  STATIC DATA MEMBERS & STATIC MEMBER FUNCTIONS (C++)
- *  + CONST KEYWORD
- *
- *  Lecture 72 – Coder Army (Rohit Negi Sir)
- *
- *  Useful for:
- *  ✔ College Exams
- *  ✔ Interviews
- *  ✔ Concept Clarity
- ************************************************************/
+    STATIC DATA MEMBERS & STATIC MEMBER FUNCTIONS (C++)
+    + CONST KEYWORD
+************************************************************/
 
 #include <iostream>
 using namespace std;
 
 /*
 ============================================================
-1️⃣ STATIC DATA MEMBER
-============================================================
+1. STATIC DATA MEMBER
+------------------------------------------------------------
+- Belongs to the class, not individual objects.
+- Only one copy exists for entire program.
+- Shared among all objects.
+- Memory allocated only once.
+- Used to store common information.
 
-• Belongs to the CLASS, not to individual objects
-• Only ONE copy exists for the entire program
-• Shared among all objects of the class
-• Memory allocated only once
-• Used to store common information
-
-SYNTAX (inside class):
+Syntax (inside class):
     static data_type variable_name;
 
-IMPORTANT:
-• Static data member MUST be defined outside the class
-• Otherwise linker error will occur
+Important:
+Static data member must be defined outside the class.
+============================================================
 */
 
 class Customer {
+
 private:
     string name;
     int account_number;
     int balance;
 
-    // Static Data Members (class-level data)
     static int total_customer;
     static int total_balance;
 
 public:
-    /*
-    --------------------------------------------------------
-    2️⃣ PARAMETERIZED CONSTRUCTOR
-    --------------------------------------------------------
-    • Called automatically when object is created
-    • Updates static members
-    */
+
+/*
+============================================================
+2. PARAMETERIZED CONSTRUCTOR
+------------------------------------------------------------
+- Automatically called when object is created.
+- Updates static members.
+============================================================
+*/
+
     Customer(string name, int acc, int bal) {
         this->name = name;
         this->account_number = acc;
@@ -59,41 +54,49 @@ public:
         total_balance += bal;
     }
 
-    /*
-    --------------------------------------------------------
-    3️⃣ NON-STATIC MEMBER FUNCTION
-    --------------------------------------------------------
-    • Requires object to call
-    • Can access BOTH static & non-static members
-    */
+/*
+============================================================
+3. NON-STATIC MEMBER FUNCTION
+------------------------------------------------------------
+- Requires object to call.
+- Can access both static and non-static members.
+============================================================
+*/
+
     void display() const {
         cout << name << " "
              << account_number << " "
              << balance << endl;
     }
 
-    /*
-    --------------------------------------------------------
-    4️⃣ STATIC MEMBER FUNCTION
-    --------------------------------------------------------
-    • Belongs to CLASS, not object
-    • Can access ONLY static members
-    • No 'this' pointer available
-    • Cannot access non-static members
+/*
+============================================================
+4. STATIC MEMBER FUNCTION
+------------------------------------------------------------
+- Belongs to class, not object.
+- Can access only static members.
+- No 'this' pointer available.
+- Cannot access non-static members.
 
-    CALLING:
-        ClassName::function();
-    */
+Calling:
+    ClassName::function();
+============================================================
+*/
+
     static void showStats() {
-        cout << "Total Customers : " << total_customer << endl;
-        cout << "Total Balance   : " << total_balance << endl;
+        cout << "Total Customers : "
+             << total_customer << endl;
+
+        cout << "Total Balance   : "
+             << total_balance << endl;
     }
 
-    /*
-    --------------------------------------------------------
-    5️⃣ NON-STATIC FUNCTION USING STATIC DATA
-    --------------------------------------------------------
-    */
+/*
+============================================================
+5. NON-STATIC FUNCTION USING STATIC DATA
+============================================================
+*/
+
     void deposit(int amount) {
         if (amount > 0) {
             balance += amount;
@@ -104,10 +107,11 @@ public:
 
 /*
 ============================================================
-6️⃣ STATIC DATA MEMBER DEFINITION
+6. STATIC DATA MEMBER DEFINITION
+------------------------------------------------------------
+Mandatory.
+Must be defined outside class.
 ============================================================
-• Mandatory
-• Done outside the class
 */
 
 int Customer::total_customer = 0;
@@ -115,85 +119,87 @@ int Customer::total_balance  = 0;
 
 /*
 ============================================================
-7️⃣ CONST KEYWORD (IMPORTANT WITH STATIC CONTEXT)
+7. CONST KEYWORD
 ============================================================
 
-const means:
-➡ Value or data cannot be modified
+const means value cannot be modified.
 */
 
 /*
 ------------------------------------------------------------
 7.1 CONST MEMBER FUNCTION
 ------------------------------------------------------------
-
-• Guarantees function will NOT modify object data
-• Can be called using const objects
+- Guarantees function will not modify object data.
+- Can be called using const objects.
+============================================================
 */
 
 class Demo {
+
     int x;
+
 public:
     Demo(int x) {
         this->x = x;
     }
 
-    int getX() const {   // const function
+    int getX() const {
         return x;
     }
 
-    // void setX(int v) const { ❌ ERROR
-    //     x = v;
-    // }
+    // void setX(int v) const { }  // Invalid
 };
 
 /*
 ------------------------------------------------------------
 7.2 CONST OBJECT
 ------------------------------------------------------------
-
-• Can call ONLY const member functions
+- Can call only const member functions.
+============================================================
 */
 
 void constObjectExample() {
+
     const Demo d(10);
-    cout << d.getX() << endl;   // ✔ Allowed
+    cout << d.getX() << endl;
 }
 
 /*
 ------------------------------------------------------------
 7.3 CONST WITH STATIC MEMBERS
 ------------------------------------------------------------
+- Static functions cannot be const.
+- const applies to object-level functions only.
 
-• Static functions CANNOT be const
-• const keyword applies to OBJECT functions only
-
-❌ static void show() const;   // INVALID
+Invalid:
+    static void show() const;
+============================================================
 */
 
 /*
 ============================================================
-8️⃣ COMMON ERRORS (FROM YOUR SCREENSHOTS)
+8. COMMON ERRORS
 ============================================================
 
-ERROR:
-call to non-static member function without an object argument
+Error:
+Call to non-static member function without object.
 
-WRONG:
-    Customer::display();      ❌
-    Customer::deposit(100);  ❌
+Wrong:
+    Customer::display();
+    Customer::deposit(100);
 
-CORRECT:
+Correct:
     Customer obj("A",1,100);
-    obj.display();            ✔
+    obj.display();
 
-STATIC FUNCTION CALL:
-    Customer::showStats();    ✔
+Static function:
+    Customer::showStats();
+============================================================
 */
 
 /*
 ============================================================
-9️⃣ MAIN FUNCTION – EXECUTION FLOW
+9. MAIN FUNCTION
 ============================================================
 */
 
@@ -207,10 +213,8 @@ int main() {
     A2.display();
     A3.display();
 
-    // Updates object + static balance
     A1.deposit(800);
 
-    // Static function call (correct way)
     Customer::showStats();
 
     constObjectExample();
@@ -220,25 +224,21 @@ int main() {
 
 /*
 ============================================================
-10️⃣ QUICK REVISION (EXAM READY)
-============================================================
+10. QUICK REVISION
+------------------------------------------------------------
+Static Data Member:
+- One copy for class.
+- Defined outside class.
+- Shared by all objects.
 
-✔ Static Data Member:
-    - One copy for entire class
-    - Defined outside class
-    - Shared among all objects
+Static Member Function:
+- Access only static members.
+- No this pointer.
+- Called using ClassName::.
 
-✔ Static Member Function:
-    - Access only static members
-    - No this pointer
-    - Called using ClassName::
-
-✔ const keyword:
-    - Prevents modification
-    - const object → calls only const functions
-    - static function CANNOT be const
-
-============================================================
-END OF NOTES ✔
+const Keyword:
+- Prevents modification.
+- Const object calls only const functions.
+- Static function cannot be const.
 ============================================================
 */

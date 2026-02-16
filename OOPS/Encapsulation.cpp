@@ -1,85 +1,82 @@
 /************************************************************
- *  ENCAPSULATION IN C++
- *  Lecture Notes – OOPS Concept
- *  Useful for: Exams | Viva | Interviews
- ************************************************************/
+        ENCAPSULATION IN C++
+************************************************************/
 
 #include <iostream>
 using namespace std;
 
 /*
 ============================================================
-1️⃣ WHAT IS ENCAPSULATION?
-============================================================
-
-Encapsulation means:
-➡ Wrapping Data (variables) and Methods (functions)
-   into a single unit (Class).
+1. DEFINITION OF ENCAPSULATION
+------------------------------------------------------------
+Encapsulation means wrapping data (variables) and 
+functions (methods) into a single unit called a CLASS.
 
 In simple words:
-Data + Functions = One Capsule (Class)
+    Data + Functions = One Capsule (Class)
 
-It is one of the 4 pillars of OOPS:
-✔ Encapsulation
-✔ Abstraction
-✔ Inheritance
-✔ Polymorphism
+It is one of the four pillars of OOPS:
+1) Encapsulation
+2) Abstraction
+3) Inheritance
+4) Polymorphism
+============================================================
 */
 
 /*
 ============================================================
-2️⃣ WHY DO WE NEED ENCAPSULATION?
-============================================================
+2. WHY ENCAPSULATION IS REQUIRED
+------------------------------------------------------------
+Encapsulation provides:
 
-✔ Data Hiding
-✔ Security
-✔ Control over data modification
-✔ Better code structure
-✔ Prevents accidental changes
+- Data Hiding
+- Security
+- Controlled access
+- Protection from accidental modification
+- Better code organization
 
-Real-life Example:
-ATM machine
+Real-Life Example:
+ATM Machine
 You cannot directly access bank database.
-You use buttons (interface).
+You interact through buttons (interface).
+============================================================
 */
 
 /*
 ============================================================
-3️⃣ ACCESS SPECIFIERS (IMPORTANT)
+3. ACCESS SPECIFIERS
+------------------------------------------------------------
+
+private:
+    - Accessible only inside the class
+    - Used for data hiding
+    - Default access in class
+
+public:
+    - Accessible everywhere
+    - Used for member functions
+
+protected:
+    - Accessible in class and derived class
+    - Used in inheritance
 ============================================================
-
-private   → Accessible only inside class
-public    → Accessible everywhere
-protected → Used in inheritance
-
-Default access in class = private
 */
 
 class BankAccount {
+
 private:
-    // 🔒 Data Hidden (Encapsulation)
     string name;
     int account_number;
     double balance;
 
 public:
-    /*
-    --------------------------------------------------------
-    4️⃣ CONSTRUCTOR
-    --------------------------------------------------------
-    */
+
     BankAccount(string name, int acc, double bal) {
         this->name = name;
         this->account_number = acc;
         this->balance = bal;
     }
 
-    /*
-    --------------------------------------------------------
-    5️⃣ GETTER FUNCTIONS
-    --------------------------------------------------------
-    Used to READ private data
-    */
     string getName() const {
         return name;
     }
@@ -88,12 +85,6 @@ public:
         return balance;
     }
 
-    /*
-    --------------------------------------------------------
-    6️⃣ SETTER FUNCTIONS
-    --------------------------------------------------------
-    Used to MODIFY private data safely
-    */
     void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -109,11 +100,6 @@ public:
         }
     }
 
-    /*
-    --------------------------------------------------------
-    7️⃣ DISPLAY FUNCTION
-    --------------------------------------------------------
-    */
     void display() const {
         cout << "Name: " << name << endl;
         cout << "Account No: " << account_number << endl;
@@ -123,7 +109,7 @@ public:
 
 /*
 ============================================================
-8️⃣ MAIN FUNCTION – USAGE
+4. MAIN FUNCTION – IMPLEMENTATION
 ============================================================
 */
 
@@ -133,13 +119,12 @@ int main() {
 
     user1.display();
 
-    // Direct access NOT allowed
-    // user1.balance = 100000; ❌ ERROR (private)
+    // user1.balance = 100000;  // ERROR (private)
 
     user1.deposit(2000);
     user1.withdraw(1500);
 
-    cout << "\nUpdated Balance: "
+    cout << "Updated Balance: "
          << user1.getBalance() << endl;
 
     return 0;
@@ -147,7 +132,7 @@ int main() {
 
 /*
 ============================================================
-9️⃣ HOW ENCAPSULATION PROVIDES SECURITY
+5. HOW ENCAPSULATION PROVIDES SECURITY
 ============================================================
 
 Without Encapsulation:
@@ -157,7 +142,7 @@ public:
     int balance;
 };
 
-Anyone can change balance directly ❌
+Anyone can modify balance directly.
 
 With Encapsulation:
 
@@ -168,42 +153,49 @@ public:
     void deposit(int amount);
 };
 
-Now data is controlled ✔
+Now modification is controlled.
+============================================================
 */
 
 /*
 ============================================================
-🔟 INTERVIEW IMPORTANT POINTS
+6. DIFFERENCE: ENCAPSULATION VS ABSTRACTION
 ============================================================
-
-✔ Encapsulation = Data Hiding
-✔ Achieved using private data members
-✔ Access provided through public functions
-✔ Improves maintainability
-✔ Improves security
-
-Difference Between Abstraction & Encapsulation:
 
 Encapsulation:
     - Hides data
-    - Implementation control
+    - Protects internal state
+    - Achieved using private data members
 
 Abstraction:
-    - Hides internal working
-    - Shows only essential features
+    - Hides implementation details
+    - Shows only essential functionality
+    - Achieved using abstract classes
+============================================================
 */
 
 /*
 ============================================================
-COMMON MISTAKES
+7. IMPORTANT POINTS
 ============================================================
 
-❌ Making everything public
-❌ Not validating input in setters
-❌ Returning reference to private variable incorrectly
-❌ Forgetting const in getter functions
-
+- Encapsulation = Data Hiding
+- Achieved using private data members
+- Access through public functions
+- Improves maintainability
+- Improves security
+- Default access in class is private
 ============================================================
-END OF NOTES ✔
+*/
+
+/*
+============================================================
+8. COMMON MISTAKES
+============================================================
+
+- Making all members public
+- Not validating input in setters
+- Forgetting const in getter functions
+- Returning private data incorrectly
 ============================================================
 */

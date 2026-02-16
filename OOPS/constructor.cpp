@@ -1,35 +1,43 @@
-/*
-===========================================================
-        CONSTRUCTORS IN C++  (Lecture 71 Notes)
-===========================================================
-
-👉 Constructor:
-- A special member function of a class
-- Same name as class
-- No return type (not even void)
-- Automatically called when object is created
-- Used to initialize data members
-
------------------------------------------------------------
-1️⃣ DEFAULT CONSTRUCTOR
------------------------------------------------------------
-- Takes no arguments
-- Called when object is created without parameters
-- If we do not create any constructor, compiler creates
-  a default constructor automatically
-*/
+/************************************************************
+        CONSTRUCTORS IN C++ (Lecture 71)
+************************************************************/
 
 #include <iostream>
 using namespace std;
 
+/*
+============================================================
+1. INTRODUCTION TO CONSTRUCTOR
+------------------------------------------------------------
+Constructor is a special member function of a class.
+
+Characteristics:
+- Same name as class
+- No return type (not even void)
+- Automatically called when object is created
+- Used to initialize data members
+============================================================
+*/
+
+/*
+============================================================
+2. DEFAULT CONSTRUCTOR
+------------------------------------------------------------
+- Takes no arguments
+- Called when object is created without parameters
+- If no constructor is written, compiler creates a
+  default constructor automatically
+============================================================
+*/
+
 class Customer {
+
     string name;
     int account_number;
     int balance;
 
 public:
 
-    // ✅ Default Constructor
     Customer() {
         name = "Rohit";
         account_number = 5;
@@ -37,11 +45,12 @@ public:
     }
 
 /*
------------------------------------------------------------
-2️⃣ PARAMETERIZED CONSTRUCTOR
------------------------------------------------------------
+============================================================
+3. PARAMETERIZED CONSTRUCTOR
+------------------------------------------------------------
 - Takes parameters
 - Used to initialize object with custom values
+============================================================
 */
 
     Customer(string a, int b, int c) {
@@ -51,46 +60,39 @@ public:
     }
 
 /*
------------------------------------------------------------
-3️⃣ CONSTRUCTOR USING this POINTER
------------------------------------------------------------
+============================================================
+4. CONSTRUCTOR USING this POINTER
+------------------------------------------------------------
 - Used when parameter names and data members are same
-- this → points to current object
+- this pointer refers to current object
+============================================================
 */
 
     Customer(string name, int account_number) {
         this->name = name;
         this->account_number = account_number;
-        this->balance = 50;   // default balance
+        this->balance = 50;
     }
 
 /*
------------------------------------------------------------
-4️⃣ CONSTRUCTOR OVERLOADING
------------------------------------------------------------
-- Multiple constructors with different parameter lists
-- Decided at compile time
-*/
-
-    // Overloaded constructor already shown above
-
-/*
------------------------------------------------------------
-5️⃣ INLINE CONSTRUCTOR
------------------------------------------------------------
-- Defined inside class
-- Usually short and simple
+============================================================
+5. CONSTRUCTOR OVERLOADING
+------------------------------------------------------------
+- Multiple constructors in same class
+- Different parameter lists
+- Resolved at compile time
+============================================================
 */
 
     inline Customer(string a, int b, int c, bool flag)
         : name(a), account_number(b), balance(c) {
-        // initializer list is faster than assignment
+        // Initializer list (faster than assignment)
     }
 
 /*
------------------------------------------------------------
-6️⃣ DISPLAY FUNCTION
------------------------------------------------------------
+============================================================
+6. MEMBER FUNCTION
+============================================================
 */
 
     void display() {
@@ -100,19 +102,19 @@ public:
     }
 
 /*
------------------------------------------------------------
-7️⃣ COPY CONSTRUCTOR
------------------------------------------------------------
-- Used to copy data from one object to another
+============================================================
+7. COPY CONSTRUCTOR
+------------------------------------------------------------
+- Used to copy one object into another
 - Called when:
-  ✔ Object is passed by value
-  ✔ Object is returned by value
-  ✔ Object is initialized using another object
+    1) Object is initialized using another object
+    2) Object is passed by value
+    3) Object is returned by value
 
-⚠ Default copy constructor does SHALLOW COPY
+Default copy constructor performs SHALLOW COPY.
+============================================================
 */
 
-    // ✅ User-defined Copy Constructor
     Customer(Customer &B) {
         name = B.name;
         account_number = B.account_number;
@@ -121,24 +123,17 @@ public:
 };
 
 /*
------------------------------------------------------------
-8️⃣ MAIN FUNCTION
------------------------------------------------------------
+============================================================
+8. MAIN FUNCTION
+============================================================
 */
 
 int main() {
 
-    // Default constructor
-    Customer A1;
-
-    // Parameterized constructor
-    Customer A2("Rohit", 23, 1000);
-
-    // Constructor overloading
-    Customer A3("Mohit", 25);
-
-    // Copy constructor
-    Customer A4(A3);
+    Customer A1;                          // Default constructor
+    Customer A2("Rohit", 23, 1000);       // Parameterized
+    Customer A3("Mohit", 25);             // Overloaded
+    Customer A4(A3);                      // Copy constructor
 
     A1.display();
     A2.display();
@@ -149,18 +144,16 @@ int main() {
 }
 
 /*
-===========================================================
-IMPORTANT INTERVIEW POINTS
-===========================================================
-
-✔ Constructor name = class name
-✔ Constructor has no return type
-✔ Constructor can be overloaded
-✔ Constructor can be inline
-✔ Copy constructor argument must be passed by reference
-✔ If copy constructor is not written, compiler creates one
-✔ Shallow copy problem occurs with pointers
-✔ Deep copy required when dynamic memory is used
-
-===========================================================
+============================================================
+9. IMPORTANT POINTS
+------------------------------------------------------------
+- Constructor name must match class name
+- Constructor has no return type
+- Constructor can be overloaded
+- Constructor can be inline
+- Copy constructor must take argument by reference
+- If not written, compiler creates default copy constructor
+- Shallow copy occurs with pointers
+- Deep copy required for dynamic memory
+============================================================
 */
