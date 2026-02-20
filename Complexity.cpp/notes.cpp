@@ -9,34 +9,22 @@ using namespace std;
 /*
 Time Complexity
 
-Time complexity tells us how the running time of an algorithm
-increases as the size of input (n) increases.
+Time complexity measures how the running time of an algorithm
+grows as input size (n) increases.
 
-Important:
-We do NOT calculate actual time in seconds.
-We calculate how the number of operations grows with n.
+We do NOT measure actual time in seconds.
+We measure number of operations relative to n.
 
-Example:
-If n = 10  → maybe 10 operations
-If n = 100 → maybe 100 operations
-Growth matters, not exact count.
+Focus is on growth rate.
 */
 
 
 /*
-Why Big-O?
+Big-O Notation
 
-Big-O notation is used to represent the worst case time complexity.
-It gives an upper bound on the running time.
+Big-O represents worst case complexity.
 
-We focus on worst case because:
-- It guarantees performance.
-- It is easier to analyse.
-*/
-
-
-/*
-Common Time Complexities (in increasing order)
+Common complexities:
 
 O(1)        constant
 O(log n)    logarithmic
@@ -48,78 +36,98 @@ O(n!)       factorial
 
 As n becomes very large:
 
-O(1) is best
-O(n!) is worst
+O(1) < O(log n) < O(n) < O(n log n) < O(n^2)
 */
 
 
 /*
-Example 1: Constant Time  O(1)
+Example 1: Constant Time
 */
 
-int getFirstElement(int arr[])
+int getFirst(int arr[])
 {
     return arr[0];
 }
 
 /*
-No matter how large array is,
-only one operation happens.
-So time complexity = O(1)
+Only one operation.
+Time = O(1)
 */
 
 
 /*
-Example 2: Linear Time  O(n)
+Example 2: Linear Time
 */
 
 void printArray(int arr[], int n)
 {
     for(int i = 0; i < n; i++)
-    {
         cout << arr[i] << " ";
-    }
 }
 
 /*
-If n = 5 → loop runs 5 times
-If n = 100 → loop runs 100 times
-
-So time complexity = O(n)
+Loop runs n times.
+Time = O(n)
 */
 
 
 /*
-Example 3: Quadratic Time  O(n^2)
+Example 3: Quadratic Time
 */
 
 void printPairs(int arr[], int n)
 {
     for(int i = 0; i < n; i++)
-    {
         for(int j = 0; j < n; j++)
-        {
             cout << arr[i] << "," << arr[j] << endl;
-        }
-    }
 }
 
 /*
 Outer loop runs n times.
-Inner loop runs n times for each outer iteration.
-
-Total operations = n * n = n^2
-So complexity = O(n^2)
+Inner loop runs n times.
+Total operations = n * n.
+Time = O(n^2)
 */
 
 
 /*
-Example 4: Logarithmic Time  O(log n)
-
-Binary Search reduces search space by half every time.
+Binary Search (Iterative)
 */
 
-int binarySearch(int arr[], int start, int end, int key)
+int binarySearchIterative(int arr[], int n, int key)
+{
+    int start = 0;
+    int end = n - 1;
+
+    while(start <= end)
+    {
+        int mid = start + (end - start) / 2;
+
+        if(arr[mid] == key)
+            return mid;
+        else if(key > arr[mid])
+            start = mid + 1;
+        else
+            end = mid - 1;
+    }
+
+    return -1;
+}
+
+/*
+Each iteration halves the search space.
+Time = O(log n)
+
+Space = O(1)
+Only few variables used.
+*/
+
+
+/*
+Binary Search (Recursive)
+*/
+
+int binarySearchRecursive(int arr[], int start, int end, int key)
 {
     if(start > end)
         return -1;
@@ -128,104 +136,53 @@ int binarySearch(int arr[], int start, int end, int key)
 
     if(arr[mid] == key)
         return mid;
-
     else if(key > arr[mid])
-        return binarySearch(arr, mid + 1, end, key);
-
+        return binarySearchRecursive(arr, mid + 1, end, key);
     else
-        return binarySearch(arr, start, mid - 1, key);
+        return binarySearchRecursive(arr, start, mid - 1, key);
 }
 
 /*
-Each recursive call reduces array size to half.
+Time = O(log n)
 
-n → n/2 → n/4 → n/8 → ...
+Space = O(log n)
 
-So number of calls ≈ log n
-Time complexity = O(log n)
-*/
-
-
-/*
-Rules to calculate time complexity
-
-1. Ignore constants
-   O(2n) becomes O(n)
-
-2. Ignore lower order terms
-   O(n^2 + n) becomes O(n^2)
-
-3. Nested loops → multiply
-   for i
-       for j
-   → O(n^2)
-
-4. Separate loops → add
-   for i (n)
-   for j (n)
-   → O(n + n) = O(n)
-
-5. Recursion:
-   Count how many recursive calls are made
-   and how much work is done in each call.
+Reason:
+Recursion stack depth ≈ log n
+Each recursive call is stored in stack memory.
 */
 
 
 /*
 Space Complexity
 
-Space complexity tells how much extra memory
-an algorithm uses.
+Space complexity measures extra memory used.
 
-There are two types:
-
+Two types:
 1. Input space
-   Memory required to store input.
-
 2. Auxiliary space
-   Extra memory used by algorithm.
 
-Usually we calculate auxiliary space.
+We usually calculate auxiliary space.
 */
 
 
 /*
-Example 1: Constant Space  O(1)
+Recursion Stack Concept
+
+In recursion, every function call is stored in call stack.
+
+Example:
+factorial(5)
+factorial(4)
+factorial(3)
+factorial(2)
+factorial(1)
+
+Total calls = 5
+
+Space = O(n)
 */
 
-void example1()
-{
-    int a = 10;
-    int b = 20;
-}
-
-/*
-Only two variables.
-No matter input size.
-So space = O(1)
-*/
-
-
-/*
-Example 2: Linear Space  O(n)
-*/
-
-void example2(int n)
-{
-    int arr[n];
-}
-
-/*
-If n increases, memory increases.
-So space = O(n)
-*/
-
-
-/*
-Recursive Space
-
-In recursion, each function call uses stack memory.
-*/
 
 int factorial(int n)
 {
@@ -235,19 +192,84 @@ int factorial(int n)
     return n * factorial(n - 1);
 }
 
+
 /*
-If n = 5,
-Stack calls:
-factorial(5)
-factorial(4)
-factorial(3)
-factorial(2)
-factorial(1)
-factorial(0)
+Tail Recursion
 
-Total stack depth = 6
+If recursive call is the last statement,
+it is called tail recursion.
 
-So space complexity = O(n)
+Example:
+*/
+
+int factorialTail(int n, int result)
+{
+    if(n == 0)
+        return result;
+
+    return factorialTail(n - 1, n * result);
+}
+
+/*
+Tail recursion can be optimized by compiler.
+May reduce stack usage in some languages.
+*/
+
+
+/*
+How to Calculate Recursion Time Complexity
+
+Example 1:
+T(n) = T(n-1) + 1
+Time = O(n)
+
+Example 2:
+T(n) = 2T(n/2) + n
+This is divide and conquer.
+Time = O(n log n)
+*/
+
+
+/*
+Master Theorem (Basic Idea)
+
+If recurrence is:
+
+T(n) = aT(n/b) + f(n)
+
+Then compare:
+n^(log_b a) and f(n)
+
+Used in:
+Merge Sort
+Quick Sort
+Binary Search Tree
+*/
+
+
+/*
+Merge Sort Example
+
+T(n) = 2T(n/2) + n
+
+Time = O(n log n)
+Space = O(n)
+*/
+
+
+/*
+Amortized Complexity
+
+Sometimes worst case seems large,
+but average per operation is small.
+
+Example:
+Dynamic array push_back.
+
+Occasionally resizing takes O(n),
+but average push is O(1).
+
+This is amortized O(1).
 */
 
 
@@ -257,32 +279,27 @@ Time vs Space Tradeoff
 Sometimes we use extra space to reduce time.
 
 Example:
-Using hashing.
-
+Using hashmap.
 Brute force → O(n^2)
-Using hash map → O(n)
+Using map → O(n)
 
 Time decreases but space increases.
 */
 
 
 /*
-Best Case, Average Case, Worst Case
+Best, Average, Worst Case
 
-Best case:
-Minimum operations.
+Best case → minimum operations
+Worst case → maximum operations
+Average case → expected operations
 
-Worst case:
-Maximum operations.
-(Big-O usually represents worst case)
-
-Average case:
-Expected operations.
+Big-O represents worst case.
 */
 
 
 /*
-Quick Comparison
+Common Interview Comparisons
 
 Linear Search
 Time = O(n)
@@ -305,6 +322,6 @@ Space = O(n)
 
 int main()
 {
-    cout << "Time and Space Complexity Notes Loaded" << endl;
+    cout << "Final Time and Space Complexity Notes Loaded" << endl;
     return 0;
 }
