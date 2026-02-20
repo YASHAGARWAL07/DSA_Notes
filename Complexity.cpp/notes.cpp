@@ -1,35 +1,23 @@
 /*
-    Time and Space Complexity
-    Complete Detailed Notes (Basics + Recursion Analysis)
+Time and Space Complexity
 */
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 
 /*
----------------------------------------------------------
 Time Complexity
----------------------------------------------------------
 
-Time complexity measures how running time increases
-as input size (n) increases.
-
-We do NOT measure seconds.
-We measure number of operations relative to n.
-
+Measures how running time grows with input size n.
+We count operations relative to n (not seconds).
 Focus is on growth rate.
 */
 
 
 /*
----------------------------------------------------------
-Big-O Notation
----------------------------------------------------------
-
-Big-O represents worst case complexity.
-
-Common orders:
+Big-O Notation (Worst Case)
 
 O(1)        constant
 O(log n)    logarithmic
@@ -38,17 +26,30 @@ O(n log n)  linearithmic
 O(n^2)      quadratic
 O(2^n)      exponential
 O(n!)       factorial
-
-As n becomes large:
-
-O(1) < O(log n) < O(n) < O(n log n) < O(n^2) < O(2^n)
 */
 
 
 /*
----------------------------------------------------------
+Best, Average, Worst Case
+
+Best Case    → Minimum operations
+Worst Case   → Maximum operations
+Average Case → Expected operations
+
+Big-O usually represents worst case.
+*/
+
+
+/*
+Growth Order
+
+O(1) < O(log n) < O(n) < O(n log n)
+< O(n^2) < O(2^n) < O(n!)
+*/
+
+
+/*
 Example 1: Constant Time
----------------------------------------------------------
 */
 
 int getFirst(int arr[])
@@ -57,15 +58,13 @@ int getFirst(int arr[])
 }
 
 /*
-Only one operation.
 Time = O(1)
+Space = O(1)
 */
 
 
 /*
----------------------------------------------------------
 Example 2: Linear Time
----------------------------------------------------------
 */
 
 void printArray(int arr[], int n)
@@ -75,15 +74,14 @@ void printArray(int arr[], int n)
 }
 
 /*
-Loop runs n times.
+Loop runs n times
 Time = O(n)
+Space = O(1)
 */
 
 
 /*
----------------------------------------------------------
 Example 3: Quadratic Time
----------------------------------------------------------
 */
 
 void printPairs(int arr[], int n)
@@ -96,13 +94,12 @@ void printPairs(int arr[], int n)
 /*
 Total operations = n * n
 Time = O(n^2)
+Space = O(1)
 */
 
 
 /*
----------------------------------------------------------
-Binary Search (Iterative)
----------------------------------------------------------
+Logarithmic Time Example
 */
 
 int binarySearchIterative(int arr[], int n, int key)
@@ -126,11 +123,7 @@ int binarySearchIterative(int arr[], int n, int key)
 }
 
 /*
-Each iteration halves the search space.
-
-n → n/2 → n/4 → n/8 ...
-
-Total steps = log n
+Each step halves the search space.
 
 Time = O(log n)
 Space = O(1)
@@ -138,9 +131,7 @@ Space = O(1)
 
 
 /*
----------------------------------------------------------
-Binary Search (Recursive)
----------------------------------------------------------
+Recursive Binary Search
 */
 
 int binarySearchRecursive(int arr[], int start, int end, int key)
@@ -160,53 +151,31 @@ int binarySearchRecursive(int arr[], int start, int end, int key)
 
 /*
 Recurrence:
-
 T(n) = T(n/2) + 1
 
-Height of recursion tree = log n
+Height = log n
 
 Time = O(log n)
-
-Space = O(log n)
-Because recursion stack depth ≈ log n
+Space = O(log n)   // recursion stack
 */
 
 
 /*
----------------------------------------------------------
 Space Complexity
----------------------------------------------------------
 
-Space complexity measures extra memory used.
+Measures extra memory used by algorithm.
 
 Two types:
-1) Input space
-2) Auxiliary space
+1) Input Space
+2) Auxiliary Space (extra memory used)
 
 We usually calculate auxiliary space.
 */
 
 
 /*
----------------------------------------------------------
-Recursion Stack Concept
----------------------------------------------------------
-
-In recursion, each function call is stored in call stack.
-
-Example:
-
-factorial(5)
-factorial(4)
-factorial(3)
-factorial(2)
-factorial(1)
-
-Total depth = 5
-
-Space = O(n)
+Recursion Stack Example
 */
-
 
 int factorial(int n)
 {
@@ -216,11 +185,19 @@ int factorial(int n)
     return n * factorial(n - 1);
 }
 
+/*
+Recurrence:
+T(n) = T(n-1) + 1
+
+Total calls = n
+
+Time = O(n)
+Space = O(n)   // recursion depth
+*/
+
 
 /*
----------------------------------------------------------
-Fibonacci Recursion (Important)
----------------------------------------------------------
+Fibonacci (Naive Recursion)
 */
 
 int fib(int n)
@@ -233,38 +210,17 @@ int fib(int n)
 
 /*
 Recurrence:
+T(n) = T(n-1) + T(n-2)
 
-T(n) = T(n-1) + T(n-2) + 1
+Tree expands exponentially.
 
-If we draw recursion tree:
-
-Level 0 → 1 node
-Level 1 → 2 nodes
-Level 2 → 4 nodes
-Level 3 → 8 nodes
-...
-
-It approximately doubles.
-
-Total nodes ≈
-
-1 + 2 + 4 + 8 + ... + 2^(n-1)
-
-This is geometric series.
-
-Sum = 2^n - 1
-
-Time Complexity = O(2^n)
-
-Space Complexity = O(n)
-(Maximum depth of stack = n)
+Time = O(2^n)
+Space = O(n)
 */
 
 
 /*
----------------------------------------------------------
 Sum of Array using Recursion
----------------------------------------------------------
 */
 
 int sumArray(int arr[], int index, int n)
@@ -276,11 +232,7 @@ int sumArray(int arr[], int index, int n)
 }
 
 /*
-Recurrence:
-
 T(n) = T(n-1) + 1
-
-Total calls = n
 
 Time = O(n)
 Space = O(n)
@@ -288,72 +240,27 @@ Space = O(n)
 
 
 /*
----------------------------------------------------------
 When Recursion Becomes O(n^2)
----------------------------------------------------------
 
 If:
-
 T(n) = T(n-1) + n
 
-Then total work:
-
-n + (n-1) + (n-2) + ... + 1
-
+Total work:
+n + (n-1) + ... + 1
 = n(n+1)/2
-
 = O(n^2)
 */
 
 
 /*
----------------------------------------------------------
-General Recursion Patterns
----------------------------------------------------------
+Divide and Conquer Pattern
 
-1) T(n) = T(n-1) + c
-   → O(n)
-
-2) T(n) = T(n/2) + c
-   → O(log n)
-
-3) T(n) = 2T(n/2) + n
-   → O(n log n)
-
-4) T(n) = 2T(n-1)
-   → O(2^n)
-*/
-
-
-/*
----------------------------------------------------------
-Master Theorem (Basic Idea)
----------------------------------------------------------
-
-If:
-
-T(n) = aT(n/b) + f(n)
-
-Compare:
-
-n^(log_b a)  and  f(n)
-
-Used in:
-Merge Sort
-Quick Sort
-Divide & Conquer algorithms
-*/
-
-
-/*
-Merge Sort:
+Example: Merge Sort
 
 T(n) = 2T(n/2) + n
 
-Levels = log n
+Height = log n
 Work per level = n
-
-Total = n log n
 
 Time = O(n log n)
 Space = O(n)
@@ -361,51 +268,56 @@ Space = O(n)
 
 
 /*
----------------------------------------------------------
+General Recursion Patterns
+
+T(n) = T(n-1) + c        → O(n)
+T(n) = T(n/2) + c        → O(log n)
+T(n) = 2T(n/2) + n       → O(n log n)
+T(n) = 2T(n-1)           → O(2^n)
+*/
+
+
+/*
+Master Theorem (Basic Idea)
+
+If:
+T(n) = aT(n/b) + f(n)
+
+Compare:
+n^(log_b a)  and  f(n)
+
+Used in:
+Merge Sort
+Quick Sort
+Divide & Conquer
+*/
+
+
+/*
 Amortized Complexity
----------------------------------------------------------
 
-Example:
-vector push_back()
+Example: vector push_back()
 
-Sometimes resizing costs O(n),
+Occasionally resizing costs O(n),
 but average cost per operation = O(1)
 
-This is amortized O(1)
+This is amortized O(1).
 */
 
 
 /*
----------------------------------------------------------
 Time vs Space Tradeoff
----------------------------------------------------------
 
-Using extra space can reduce time.
+Brute Force Two Sum → O(n^2)
+Using Hashmap       → O(n)
 
-Example:
-Brute force two sum → O(n^2)
-Using hashmap → O(n)
-But space increases to O(n)
+Time improves,
+Space increases to O(n)
 */
 
 
 /*
----------------------------------------------------------
-Best, Average, Worst Case
----------------------------------------------------------
-
-Best case → minimum operations
-Worst case → maximum operations
-Average case → expected operations
-
-Big-O usually represents worst case.
-*/
-
-
-/*
----------------------------------------------------------
 Important Comparisons
----------------------------------------------------------
 
 Linear Search
 Time = O(n)
@@ -416,7 +328,7 @@ Time = O(log n)
 Space = O(1) iterative
 Space = O(log n) recursive
 
-Fibonacci (naive recursion)
+Fibonacci (naive)
 Time = O(2^n)
 Space = O(n)
 
@@ -432,6 +344,6 @@ Space = O(1)
 
 int main()
 {
-    cout << "Time and Space Complexity Complete Notes Loaded" << endl;
+    cout << "Time and Space Complexity Notes Loaded" << endl;
     return 0;
 }
