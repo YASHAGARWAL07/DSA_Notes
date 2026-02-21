@@ -1,0 +1,415 @@
+============================================================
+GIT – COMPLETE DEVELOPER NOTES (BEGINNER → ADVANCED)
+============================================================
+
+
+------------------------------------------------------------
+1. WHAT IS GIT?
+------------------------------------------------------------
+
+Git is a Distributed Version Control System (DVCS)
+used to track changes in source code during development.
+
+It allows:
+✔ Track code history
+✔ Collaborate with teams
+✔ Manage branches
+✔ Revert to previous versions
+✔ Work offline
+
+
+------------------------------------------------------------
+2. VERSION CONTROL SYSTEM (VCS)
+------------------------------------------------------------
+
+Version Control System manages file changes over time.
+
+Types:
+1) Local VCS
+2) Centralized VCS (e.g., SVN)
+3) Distributed VCS (Git)
+
+Git = Distributed
+Every developer has full copy of repository.
+
+
+------------------------------------------------------------
+3. GIT ARCHITECTURE (VERY IMPORTANT)
+------------------------------------------------------------
+
+Git has 3 main areas:
+
+1) Working Directory
+   → Where you edit files.
+
+2) Staging Area (Index)
+   → Where files are prepared for commit.
+
+3) Repository (.git folder)
+   → Stores complete history.
+
+Flow:
+
+Working Directory → git add → Staging Area
+Staging Area → git commit → Repository
+
+
+------------------------------------------------------------
+4. INSTALLATION CHECK
+------------------------------------------------------------
+
+git --version
+→ Check Git installed
+
+
+------------------------------------------------------------
+5. INITIAL SETUP (FIRST TIME ONLY)
+------------------------------------------------------------
+
+git config --global user.name "Yash"
+git config --global user.email "your@email.com"
+
+Check config:
+git config --list
+
+
+------------------------------------------------------------
+6. STARTING A REPOSITORY
+------------------------------------------------------------
+
+git init
+→ Initialize empty repository
+
+This creates .git folder
+
+
+------------------------------------------------------------
+7. CLONING EXISTING REPOSITORY
+------------------------------------------------------------
+
+git clone repository_url
+
+Example:
+git clone https://github.com/user/repo.git
+
+
+------------------------------------------------------------
+8. CHECKING STATUS
+------------------------------------------------------------
+
+git status
+→ Shows:
+- Modified files
+- Staged files
+- Untracked files
+
+
+------------------------------------------------------------
+9. ADDING FILES TO STAGING
+------------------------------------------------------------
+
+git add file.txt
+→ Add specific file
+
+git add .
+→ Add all changes
+
+git add *.cpp
+→ Add all cpp files
+
+
+------------------------------------------------------------
+10. COMMITTING CHANGES
+------------------------------------------------------------
+
+git commit -m "Message"
+→ Save snapshot
+
+Best practice:
+Write meaningful commit messages
+
+
+------------------------------------------------------------
+11. VIEWING HISTORY
+------------------------------------------------------------
+
+git log
+→ Show commit history
+
+git log --oneline
+→ Short version
+
+git log --graph
+→ Branch graph view
+
+
+------------------------------------------------------------
+12. DIFFERENCE BETWEEN FILE VERSIONS
+------------------------------------------------------------
+
+git diff
+→ Show unstaged changes
+
+git diff --staged
+→ Show staged changes
+
+
+------------------------------------------------------------
+13. BRANCHING (VERY IMPORTANT)
+------------------------------------------------------------
+
+What is Branch?
+Independent line of development.
+
+Default branch: main
+
+
+Create branch:
+git branch feature1
+
+Switch branch:
+git checkout feature1
+
+OR (new method)
+git switch feature1
+
+Create + switch:
+git checkout -b feature1
+
+
+List branches:
+git branch
+
+Delete branch:
+git branch -d feature1
+
+
+------------------------------------------------------------
+14. MERGING
+------------------------------------------------------------
+
+Merge branch into main:
+
+git checkout main
+git merge feature1
+
+Merge conflict occurs when:
+Same line modified in both branches.
+
+
+------------------------------------------------------------
+15. REMOTE REPOSITORY
+------------------------------------------------------------
+
+View remotes:
+git remote -v
+
+Add remote:
+git remote add origin repository_url
+
+Push code:
+git push origin main
+
+Pull code:
+git pull origin main
+
+Fetch changes:
+git fetch
+
+
+Difference:
+fetch → downloads changes
+pull → fetch + merge
+
+
+------------------------------------------------------------
+16. PUSHING FIRST TIME
+------------------------------------------------------------
+
+git push -u origin main
+
+-u sets upstream branch
+
+
+------------------------------------------------------------
+17. STASHING
+------------------------------------------------------------
+
+Temporarily save changes without commit.
+
+git stash
+git stash list
+git stash apply
+
+
+------------------------------------------------------------
+18. RESET & REVERT (INTERVIEW FAVORITE)
+------------------------------------------------------------
+
+git reset --soft HEAD~1
+→ Remove last commit (keep changes)
+
+git reset --hard HEAD~1
+→ Remove commit & changes
+
+git revert commit_id
+→ Undo commit safely
+
+
+Difference:
+reset rewrites history
+revert creates new commit
+
+
+------------------------------------------------------------
+19. REMOVE FILE FROM GIT
+------------------------------------------------------------
+
+git rm file.txt
+→ Remove from repo
+
+git rm --cached file.txt
+→ Remove from Git but keep locally
+
+
+------------------------------------------------------------
+20. .GITIGNORE
+------------------------------------------------------------
+
+Used to ignore files.
+
+Example:
+node_modules/
+.env
+*.log
+
+
+------------------------------------------------------------
+21. TAGS
+------------------------------------------------------------
+
+Used for versioning.
+
+git tag v1.0
+git tag
+git push origin v1.0
+
+
+------------------------------------------------------------
+22. CHERRY PICK
+------------------------------------------------------------
+
+Apply specific commit from another branch:
+
+git cherry-pick commit_id
+
+
+------------------------------------------------------------
+23. REBASE (ADVANCED)
+------------------------------------------------------------
+
+git rebase main
+
+Rewrites commit history.
+
+Used for clean history.
+
+
+------------------------------------------------------------
+24. SHOW COMMAND
+------------------------------------------------------------
+
+git show commit_id
+→ Show details of commit
+
+
+------------------------------------------------------------
+25. CLEAN COMMAND
+------------------------------------------------------------
+
+git clean -f
+→ Remove untracked files
+
+git clean -fd
+→ Remove untracked files & directories
+
+
+------------------------------------------------------------
+26. GIT WORKFLOW (REAL PROJECT)
+------------------------------------------------------------
+
+1. git clone
+2. git checkout -b feature
+3. Code
+4. git add .
+5. git commit -m "feature added"
+6. git push origin feature
+7. Create Pull Request
+
+
+------------------------------------------------------------
+27. COMMON ERRORS
+------------------------------------------------------------
+
+Error: failed to push
+→ Pull first
+
+git pull origin main
+
+
+------------------------------------------------------------
+28. INTERVIEW QUESTIONS
+------------------------------------------------------------
+
+1) Difference between Git and GitHub?
+2) What is staging area?
+3) What is merge conflict?
+4) Difference between merge and rebase?
+5) Difference between reset and revert?
+6) What is HEAD in Git?
+
+
+------------------------------------------------------------
+29. IMPORTANT DEFINITIONS
+------------------------------------------------------------
+
+Repository → Project folder tracked by Git
+Commit → Snapshot of project
+Branch → Parallel development line
+Merge → Combine branches
+HEAD → Current commit pointer
+Origin → Default remote name
+
+
+------------------------------------------------------------
+30. COMPLETE COMMAND QUICK LIST
+------------------------------------------------------------
+
+git init
+git clone
+git status
+git add .
+git commit -m ""
+git log
+git diff
+git branch
+git checkout
+git switch
+git merge
+git remote -v
+git push
+git pull
+git fetch
+git stash
+git reset
+git revert
+git rm
+git tag
+git rebase
+git cherry-pick
+git clean
+
+
+============================================================
+END OF GIT COMPLETE NOTES
+============================================================

@@ -1,0 +1,318 @@
+============================================================
+TERMINAL – ALL COMMANDS COMPLETE REFERENCE (LINUX + SSH)
+============================================================
+
+
+------------------------------------------------------------
+1. USER & SYSTEM COMMANDS
+------------------------------------------------------------
+
+who
+→ Shows currently logged-in users.
+
+whoami
+→ Displays current logged-in username.
+
+date
+→ Shows system date and time.
+
+history
+→ Displays previously executed commands.
+
+man command_name
+→ Shows manual/documentation.
+Example:
+man ls
+
+
+------------------------------------------------------------
+2. DIRECTORY NAVIGATION COMMANDS
+------------------------------------------------------------
+
+pwd
+→ Print working directory (current location).
+
+ls
+→ List files and directories.
+
+ls -a
+→ Show hidden files.
+
+ls -l
+→ Detailed list (permissions, size, date).
+
+cd folder_name
+→ Change directory.
+
+cd ..
+→ Move to parent directory.
+
+cd .
+→ Stay in current directory.
+
+cd ~
+→ Go to home directory.
+
+cd /
+→ Go to root directory.
+
+cd -
+→ Go to previous directory.
+
+
+------------------------------------------------------------
+3. FILE & DIRECTORY CREATION
+------------------------------------------------------------
+
+mkdir folder_name
+→ Create new folder.
+
+mkdir -p a/b/c
+→ Create nested directories.
+
+touch file.txt
+→ Create empty file.
+
+gedit abc.txt
+→ Open file in GUI text editor.
+
+echo "text" > file.txt
+→ Write into file (overwrite).
+
+echo "text" >> file.txt
+→ Append to file.
+
+
+------------------------------------------------------------
+4. FILE VIEWING COMMANDS
+------------------------------------------------------------
+
+cat file_name
+→ Display file content.
+
+cat file1 file2
+→ Display multiple files.
+
+head file.txt
+→ Show first 10 lines.
+
+tail file.txt
+→ Show last 10 lines.
+
+tail -f file.txt
+→ Live monitor file (used for logs).
+
+less file.txt
+→ Scrollable file viewer.
+
+
+------------------------------------------------------------
+5. FILE REDIRECTION OPERATORS
+------------------------------------------------------------
+
+>
+→ Overwrites existing file.
+
+>>
+→ Appends to existing file.
+
+Examples:
+
+cat first.c > test.sample
+→ Copy content (overwrite).
+
+ls > sample
+→ Save output into file.
+
+./a.out > test
+→ Save program output into file.
+
+
+------------------------------------------------------------
+6. FILE & DIRECTORY DELETION
+------------------------------------------------------------
+
+rm file.txt
+→ Delete file.
+
+rm -r folder_name
+→ Delete folder recursively.
+
+rm -rf folder_name
+→ Force delete (⚠ Dangerous).
+
+
+------------------------------------------------------------
+7. COPY & MOVE COMMANDS
+------------------------------------------------------------
+
+cp file1 file2
+→ Copy file.
+
+cp -r folder1 folder2
+→ Copy folder.
+
+mv file.txt folder/
+→ Move file.
+
+mv old.txt new.txt
+→ Rename file.
+
+
+------------------------------------------------------------
+8. COMPILATION & EXECUTION (C PROGRAM)
+------------------------------------------------------------
+
+gcc first.c
+→ Compile C program.
+
+./a.out
+→ Run compiled program.
+
+
+------------------------------------------------------------
+9. NETWORK COMMANDS
+------------------------------------------------------------
+
+ifconfig
+→ Shows network configuration & IP address.
+
+sudo apt install net-tools
+→ Install networking tools (ifconfig).
+
+ping ip_address
+→ Check connectivity between systems.
+
+ssh username@ip_address
+→ Connect to remote machine via SSH.
+Example:
+ssh yash@10.84.17.13
+
+
+------------------------------------------------------------
+10. PACKAGE MANAGEMENT (UBUNTU)
+------------------------------------------------------------
+
+sudo apt update
+→ Update package list.
+
+sudo apt install package_name
+→ Install package.
+
+sudo apt-get install vim
+→ Install Vim editor.
+
+sudo apt install openssh-server
+→ Install SSH server.
+
+
+------------------------------------------------------------
+11. PROCESS MANAGEMENT
+------------------------------------------------------------
+
+ps
+→ Show running processes.
+
+top
+→ Real-time process monitoring.
+
+kill PID
+→ Stop process.
+
+kill -9 PID
+→ Force kill process.
+
+
+------------------------------------------------------------
+12. SEARCH COMMANDS
+------------------------------------------------------------
+
+find . -name "file.txt"
+→ Find file.
+
+grep "text" file.txt
+→ Search text in file.
+
+grep -r "text" .
+→ Search recursively in folders.
+
+
+------------------------------------------------------------
+13. PERMISSIONS
+------------------------------------------------------------
+
+ls -l
+→ View permissions.
+
+chmod 777 file.txt
+→ Change permissions.
+
+Permission numbers:
+4 = read
+2 = write
+1 = execute
+
+7 = 4+2+1 (rwx)
+
+
+------------------------------------------------------------
+14. ENVIRONMENT VARIABLES
+------------------------------------------------------------
+
+printenv
+→ Show environment variables.
+
+echo $PATH
+→ Show system PATH.
+
+export NAME=value
+→ Create environment variable.
+
+
+------------------------------------------------------------
+15. TERMINAL SHORTCUTS
+------------------------------------------------------------
+
+Tab → Auto complete
+↑   → Previous command
+Ctrl + C → Stop command
+Ctrl + L → Clear screen
+Ctrl + A → Move to start of line
+Ctrl + E → Move to end of line
+
+
+------------------------------------------------------------
+16. IMPORTANT SYMBOLS
+------------------------------------------------------------
+
+/  → Root directory
+~  → Home directory
+.  → Current directory
+.. → Parent directory
+>  → Overwrite
+>> → Append
+-  → Flag indicator
+
+
+------------------------------------------------------------
+17. INTERVIEW IMPORTANT DIFFERENCES
+------------------------------------------------------------
+
+Absolute Path:
+Starts with /
+
+Relative Path:
+Starts from current directory.
+
+rm vs rm -rf:
+rm deletes file
+rm -rf force deletes recursively
+
+> vs >>:
+> Overwrites
+>> Appends
+
+
+============================================================
+END OF TERMINAL ALL COMMANDS FILE
+============================================================

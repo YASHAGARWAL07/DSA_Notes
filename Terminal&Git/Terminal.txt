@@ -1,0 +1,465 @@
+============================================================
+TERMINAL – COMPLETE DEVELOPER NOTES (BEGINNER → ADVANCED)
+============================================================
+
+
+------------------------------------------------------------
+1. WHAT IS TERMINAL?
+------------------------------------------------------------
+
+Terminal is a Command Line Interface (CLI) that allows
+users to interact with the Operating System using text
+commands instead of graphical elements.
+
+Instead of clicking folders, you type commands.
+
+GUI → Graphical User Interface
+CLI → Command Line Interface
+
+Terminal = Interface
+Shell = Program inside terminal that interprets commands
+
+Common Shells:
+- Bash (Linux/Mac)
+- Zsh (Mac default)
+- PowerShell (Windows)
+- Git Bash (Windows)
+
+
+WHY DEVELOPERS USE TERMINAL?
+------------------------------------------------------------
+✔ Faster than GUI
+✔ Automatable
+✔ Used for Git, Docker, SSH
+✔ Essential for Backend & DevOps
+✔ Remote server control
+✔ Works without graphics (servers)
+
+
+------------------------------------------------------------
+2. FILE SYSTEM STRUCTURE (LINUX/MAC)
+------------------------------------------------------------
+
+The file system is hierarchical (tree structure).
+
+/
+
+This symbol represents the ROOT directory.
+
+Everything starts from root.
+
+Example structure:
+
+/
+├── bin
+├── etc
+├── home
+├── Users
+├── var
+└── tmp
+
+
+------------------------------------------------------------
+3. ROOT DIRECTORY
+------------------------------------------------------------
+
+Symbol: /
+
+Definition:
+The top-most directory in Linux/Unix systems.
+
+It is NOT the same as "C:\" in Windows.
+In Linux/Mac everything begins from /
+
+Example:
+cd /
+
+You are now at the root.
+
+
+------------------------------------------------------------
+4. HOME DIRECTORY
+------------------------------------------------------------
+
+Symbol: ~
+
+Represents the current user's home folder.
+
+Example:
+If your username is yash:
+
+Home directory:
+ /Users/yash     (Mac)
+ /home/yash      (Linux)
+
+Instead of writing full path:
+cd /Users/yash
+
+You can write:
+cd ~
+
+Shortcut:
+~ = current user's home directory
+
+
+------------------------------------------------------------
+5. PATHS (VERY IMPORTANT)
+------------------------------------------------------------
+
+A path tells location of file or folder.
+
+There are two types:
+
+
+1) ABSOLUTE PATH
+--------------------------------
+Starts from root (/)
+
+Example:
+cd /Users/yash/Desktop/project
+
+✔ Complete path
+✔ Independent of current location
+
+
+2) RELATIVE PATH
+--------------------------------
+Starts from current directory
+
+Example:
+cd Desktop/project
+
+✔ Depends on current location
+
+
+Special Symbols:
+--------------------------------
+.   → Current directory
+..  → Parent directory
+~   → Home directory
+/   → Root directory
+
+
+Example:
+
+If current location:
+ /Users/yash/Desktop
+
+cd ..
+→ Goes to:
+ /Users/yash
+
+cd .
+→ Stays in same directory
+
+
+------------------------------------------------------------
+6. BASIC COMMANDS
+------------------------------------------------------------
+
+pwd
+→ Print Working Directory
+Shows current location
+
+ls
+→ List files/folders
+
+ls -l
+→ Long format (permissions, size, date)
+
+ls -a
+→ Show hidden files (.git, .env)
+
+clear
+→ Clears screen
+
+whoami
+→ Shows logged in user
+
+date
+→ Shows system date/time
+
+history
+→ Shows previously executed commands
+
+
+------------------------------------------------------------
+7. NAVIGATION COMMANDS
+------------------------------------------------------------
+
+cd folderName
+→ Move inside folder
+
+cd ..
+→ Go one level up
+
+cd ~
+→ Go to home directory
+
+cd /
+→ Go to root directory
+
+cd -
+→ Go to previous directory
+
+
+Example Navigation:
+
+pwd
+/Users/yash
+
+cd Desktop
+pwd
+/Users/yash/Desktop
+
+cd ..
+pwd
+/Users/yash
+
+
+------------------------------------------------------------
+8. CREATING FILES & DIRECTORIES
+------------------------------------------------------------
+
+mkdir folderName
+→ Create folder
+
+mkdir -p a/b/c
+→ Create nested folders
+
+touch file.txt
+→ Create empty file
+
+echo "Hello" > file.txt
+→ Write text inside file
+
+echo "World" >> file.txt
+→ Append text
+
+
+------------------------------------------------------------
+9. DELETING FILES & FOLDERS
+------------------------------------------------------------
+
+rm file.txt
+→ Delete file
+
+rm -r folderName
+→ Delete folder recursively
+
+rm -rf folderName
+→ Force delete (⚠ Very Dangerous)
+
+NEVER run:
+rm -rf /
+(It deletes entire system)
+
+
+------------------------------------------------------------
+10. COPYING & MOVING
+------------------------------------------------------------
+
+cp file1.txt file2.txt
+→ Copy file
+
+cp -r folder1 folder2
+→ Copy folder
+
+mv file.txt folder/
+→ Move file
+
+mv old.txt new.txt
+→ Rename file
+
+
+------------------------------------------------------------
+11. FILE VIEWING COMMANDS
+------------------------------------------------------------
+
+cat file.txt
+→ Print entire file
+
+less file.txt
+→ Scrollable view
+
+head file.txt
+→ First 10 lines
+
+tail file.txt
+→ Last 10 lines
+
+tail -f file.txt
+→ Live monitoring (used for logs)
+
+
+------------------------------------------------------------
+12. FLAGS (VERY IMPORTANT)
+------------------------------------------------------------
+
+Flags modify behavior of commands.
+
+Format:
+command -flag
+
+Examples:
+
+ls -l
+ls -a
+rm -r
+mkdir -p
+
+Multiple flags:
+ls -la
+
+- = flag indicator
+
+
+------------------------------------------------------------
+13. PERMISSIONS (INTERVIEW FAVORITE)
+------------------------------------------------------------
+
+Command:
+ls -l
+
+Example output:
+-rwxr-xr-x
+
+Meaning:
+
+First character:
+-  → File
+d  → Directory
+
+Next 3 → Owner permissions
+Next 3 → Group permissions
+Last 3 → Others permissions
+
+r = read
+w = write
+x = execute
+
+Change permission:
+chmod 777 file.txt
+
+777 means:
+Owner = 7
+Group = 7
+Others = 7
+
+Where:
+7 = 4+2+1
+4 = read
+2 = write
+1 = execute
+
+
+------------------------------------------------------------
+14. PROCESS COMMANDS
+------------------------------------------------------------
+
+ps
+→ Show running processes
+
+top
+→ Real-time process viewer
+
+kill PID
+→ Stop process
+
+kill -9 PID
+→ Force kill
+
+
+------------------------------------------------------------
+15. SEARCH COMMANDS
+------------------------------------------------------------
+
+find . -name "file.txt"
+→ Find file
+
+grep "text" file.txt
+→ Search text inside file
+
+grep -r "text" .
+→ Search recursively
+
+
+------------------------------------------------------------
+16. SHORTCUT KEYS
+------------------------------------------------------------
+
+Tab → Auto-complete
+↑   → Previous command
+Ctrl + C → Stop command
+Ctrl + L → Clear screen
+Ctrl + A → Move cursor to start
+Ctrl + E → Move cursor to end
+
+
+------------------------------------------------------------
+17. ENVIRONMENT VARIABLES
+------------------------------------------------------------
+
+echo $PATH
+→ Shows system path
+
+printenv
+→ Show environment variables
+
+export NAME=value
+→ Create variable
+
+
+------------------------------------------------------------
+18. DEVELOPER USE CASES
+------------------------------------------------------------
+
+Git:
+git init
+git clone
+git add .
+git commit -m "message"
+git push
+
+Node:
+node app.js
+npm install
+
+Python:
+python file.py
+
+Docker:
+docker build
+docker run
+
+SSH:
+ssh user@server_ip
+
+
+------------------------------------------------------------
+19. COMMON INTERVIEW QUESTIONS
+------------------------------------------------------------
+
+1) Difference between root and home directory?
+2) Absolute vs Relative path?
+3) What is shell?
+4) What does cd .. do?
+5) What is chmod?
+6) What is difference between rm and rm -rf?
+
+
+------------------------------------------------------------
+20. SUMMARY
+------------------------------------------------------------
+
+✔ Terminal = CLI tool
+✔ / = Root directory
+✔ ~ = Home directory
+✔ Absolute path starts with /
+✔ Relative path depends on current location
+✔ Flags modify commands
+✔ Essential for backend, DevOps, Git
+
+============================================================
+END OF NOTES
+============================================================

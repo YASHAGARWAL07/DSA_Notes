@@ -1,0 +1,363 @@
+============================================================
+GITHUB – COMPLETE DEVELOPER NOTES (BEGINNER → ADVANCED)
+============================================================
+
+
+------------------------------------------------------------
+1. WHAT IS GITHUB?
+------------------------------------------------------------
+
+GitHub is a cloud-based platform that hosts Git repositories.
+
+Git = Version Control System  
+GitHub = Hosting platform for Git repositories
+
+It allows:
+✔ Store code online
+✔ Collaborate with others
+✔ Track issues
+✔ Review code
+✔ CI/CD automation
+✔ Open-source contribution
+
+
+------------------------------------------------------------
+2. GIT vs GITHUB
+------------------------------------------------------------
+
+Git:
+- Software
+- Installed locally
+- Tracks changes
+
+GitHub:
+- Website/platform
+- Stores repositories online
+- Enables collaboration
+
+
+------------------------------------------------------------
+3. REPOSITORY (REPO)
+------------------------------------------------------------
+
+A repository is a project folder tracked by Git.
+
+Types:
+1) Public → Anyone can see
+2) Private → Only invited users
+
+Repo contains:
+- Code files
+- Commit history
+- Branches
+- README
+- .gitignore
+- License
+
+
+------------------------------------------------------------
+4. CREATING A REPOSITORY
+------------------------------------------------------------
+
+Steps:
+1. Go to GitHub
+2. Click "New Repository"
+3. Enter name
+4. Choose public/private
+5. Add README (optional)
+
+OR via terminal:
+
+git remote add origin repo_url
+git push -u origin main
+
+
+------------------------------------------------------------
+5. CONNECT LOCAL PROJECT TO GITHUB
+------------------------------------------------------------
+
+git init
+git add .
+git commit -m "Initial commit"
+
+Add remote:
+git remote add origin https://github.com/username/repo.git
+
+Push:
+git push -u origin main
+
+
+------------------------------------------------------------
+6. FORKING
+------------------------------------------------------------
+
+Fork = Copy someone else's repository into your account.
+
+Used for:
+- Open source contribution
+- Making personal changes
+
+Flow:
+Fork → Clone → Make changes → Pull Request
+
+
+------------------------------------------------------------
+7. CLONE
+------------------------------------------------------------
+
+git clone repo_url
+
+Downloads repository to local machine.
+
+
+------------------------------------------------------------
+8. BRANCHES IN GITHUB
+------------------------------------------------------------
+
+Default branch: main
+
+Feature branches:
+feature-login
+bug-fix
+dev
+
+Best practice:
+Never push directly to main in team projects.
+
+
+------------------------------------------------------------
+9. PULL REQUEST (PR)
+------------------------------------------------------------
+
+Pull Request = Request to merge your branch into another branch.
+
+Used for:
+✔ Code review
+✔ Collaboration
+✔ Discuss changes
+
+Steps:
+1. Push branch
+2. Open PR on GitHub
+3. Review
+4. Merge
+
+
+------------------------------------------------------------
+10. MERGE OPTIONS
+------------------------------------------------------------
+
+1) Create Merge Commit
+2) Squash and Merge
+3) Rebase and Merge
+
+Interview Favorite:
+Difference between merge and rebase
+
+
+------------------------------------------------------------
+11. ISSUES
+------------------------------------------------------------
+
+Used for:
+- Reporting bugs
+- Feature requests
+- Task tracking
+
+Can assign:
+- Labels
+- Assignees
+- Milestones
+
+
+------------------------------------------------------------
+12. README FILE
+------------------------------------------------------------
+
+README.md describes project.
+
+Should include:
+- Project title
+- Description
+- Installation steps
+- Usage
+- Tech stack
+- Screenshots
+
+Markdown syntax:
+# Heading
+## Subheading
+- Bullet point
+**Bold**
+`code`
+
+
+------------------------------------------------------------
+13. .GITIGNORE
+------------------------------------------------------------
+
+Used to ignore files.
+
+Example:
+node_modules/
+.env
+*.log
+build/
+
+
+------------------------------------------------------------
+14. GITHUB ACTIONS (CI/CD)
+------------------------------------------------------------
+
+Used for:
+- Automatic testing
+- Deployment
+- Automation
+
+Located in:
+.github/workflows/
+
+Example:
+Run tests on push.
+
+
+------------------------------------------------------------
+15. GITHUB PAGES
+------------------------------------------------------------
+
+Used to host static websites.
+
+Common use:
+Portfolio websites
+
+Steps:
+Settings → Pages → Select branch → Deploy
+
+
+------------------------------------------------------------
+16. COLLABORATORS
+------------------------------------------------------------
+
+Repository owner can:
+- Add collaborators
+- Give access level:
+  - Read
+  - Write
+  - Admin
+
+
+------------------------------------------------------------
+17. SECURITY FEATURES
+------------------------------------------------------------
+
+✔ Dependabot (security updates)
+✔ Secret scanning
+✔ Branch protection rules
+✔ Code scanning
+
+
+------------------------------------------------------------
+18. RELEASES & TAGS
+------------------------------------------------------------
+
+Used for versioning.
+
+Example:
+v1.0
+v2.0
+
+Create release from tags.
+
+
+------------------------------------------------------------
+19. GITHUB COMMANDS SUMMARY
+------------------------------------------------------------
+
+git clone
+git remote add origin
+git push
+git pull
+git fetch
+git branch
+git checkout
+git merge
+git rebase
+git tag
+
+
+------------------------------------------------------------
+20. PROFESSIONAL WORKFLOW
+------------------------------------------------------------
+
+1. Clone repo
+2. Create branch
+3. Work on feature
+4. Commit changes
+5. Push branch
+6. Create Pull Request
+7. Code review
+8. Merge
+
+
+------------------------------------------------------------
+21. INTERVIEW QUESTIONS
+------------------------------------------------------------
+
+1) Difference between Git and GitHub?
+2) What is Fork?
+3) What is Pull Request?
+4) What is README?
+5) What is GitHub Actions?
+6) Difference between public and private repo?
+7) What is branch protection?
+
+
+------------------------------------------------------------
+22. INDUSTRY BEST PRACTICES
+------------------------------------------------------------
+
+✔ Meaningful commit messages
+✔ Use feature branches
+✔ Protect main branch
+✔ Write proper README
+✔ Use Pull Requests
+✔ Review code before merging
+
+
+------------------------------------------------------------
+23. COMMON ERRORS
+------------------------------------------------------------
+
+Error: rejected push
+→ Pull first
+
+git pull origin main
+
+Error: Authentication failed
+→ Use Personal Access Token (PAT)
+
+
+------------------------------------------------------------
+24. GITHUB PROFILE OPTIMIZATION
+------------------------------------------------------------
+
+✔ Add profile README
+✔ Pin best repositories
+✔ Maintain commit streak
+✔ Write good documentation
+✔ Add projects & certifications
+
+
+------------------------------------------------------------
+25. SUMMARY
+------------------------------------------------------------
+
+✔ GitHub = Cloud hosting for Git
+✔ Used for collaboration
+✔ Supports Pull Requests & Issues
+✔ Enables CI/CD
+✔ Essential for developers
+
+============================================================
+END OF GITHUB COMPLETE NOTES
+============================================================
