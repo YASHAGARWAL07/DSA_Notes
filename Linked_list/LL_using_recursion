@@ -1,0 +1,231 @@
+/*
+============================================================
+LINKED LIST CREATION USING RECURSION
+============================================================
+*/
+
+#include <iostream>
+using namespace std;
+
+
+/*
+------------------------------------------------------------
+1. PROBLEM STATEMENT
+------------------------------------------------------------
+
+Given an array, create a singly linked list using recursion.
+
+Input:
+arr[] = {2, 4, 6, 8}
+
+Output:
+2 -> 4 -> 6 -> 8 -> NULL
+
+Each recursive call will create one node.
+*/
+
+
+/*
+------------------------------------------------------------
+2. NODE STRUCTURE
+------------------------------------------------------------
+*/
+
+class Node
+{
+public:
+    int data;
+    Node* next;
+
+    Node(int val)
+    {
+        data = val;
+        next = NULL;
+    }
+};
+
+
+/*
+------------------------------------------------------------
+3. RECURSIVE APPROACH – CORE IDEA
+------------------------------------------------------------
+
+Function Signature:
+Node* createLinkedList(int arr[], int index, int size)
+
+Working:
+
+Base Case:
+If index == size
+Return NULL
+
+Recursive Case:
+1. Create node for current index
+2. Recursively create remaining list
+3. Attach returned list to current node
+4. Return current node
+
+Flow:
+
+createLinkedList(arr, 0, n)
+    creates node arr[0]
+    next = createLinkedList(arr, 1, n)
+        creates node arr[1]
+        next = createLinkedList(arr, 2, n)
+            ...
+                until index == size
+
+Stack then unwinds forming the list.
+*/
+
+
+Node* createLinkedList(int arr[], int index, int size)
+{
+    // Base Case
+    if(index == size)
+    {
+        return NULL;
+    }
+
+    // Step 1: Create current node
+    Node* temp = new Node(arr[index]);
+
+    // Step 2: Recursively create rest of list
+    temp->next = createLinkedList(arr, index + 1, size);
+
+    // Step 3: Return current node
+    return temp;
+}
+
+
+/*
+------------------------------------------------------------
+4. DRY RUN (STEP BY STEP EXECUTION)
+------------------------------------------------------------
+
+Example:
+arr = {2, 4, 6}
+size = 3
+
+Call Stack:
+
+createLinkedList(arr, 0, 3)
+    temp = Node(2)
+    temp->next = createLinkedList(arr, 1, 3)
+
+createLinkedList(arr, 1, 3)
+    temp = Node(4)
+    temp->next = createLinkedList(arr, 2, 3)
+
+createLinkedList(arr, 2, 3)
+    temp = Node(6)
+    temp->next = createLinkedList(arr, 3, 3)
+
+createLinkedList(arr, 3, 3)
+    index == size
+    return NULL
+
+Unwinding:
+
+Node(6)->NULL
+Node(4)->Node(6)->NULL
+Node(2)->Node(4)->Node(6)->NULL
+
+Head returned from first call.
+*/
+
+
+/*
+------------------------------------------------------------
+5. PRINT FUNCTION
+------------------------------------------------------------
+*/
+
+void printList(Node* head)
+{
+    while(head != NULL)
+    {
+        cout << head->data << " -> ";
+        head = head->next;
+    }
+    cout << "NULL" << endl;
+}
+
+
+/*
+------------------------------------------------------------
+6. TIME COMPLEXITY
+------------------------------------------------------------
+
+Each element is processed exactly once.
+
+Time Complexity: O(n)
+
+------------------------------------------------------------
+7. SPACE COMPLEXITY
+------------------------------------------------------------
+
+Two types of space used:
+
+1. Memory for Nodes: O(n)
+2. Recursive Call Stack: O(n)
+
+Total Auxiliary Space: O(n)
+*/
+
+
+/*
+------------------------------------------------------------
+8. IMPORTANT CONCEPTS
+------------------------------------------------------------
+
+[IMPORTANT]
+Base case must return NULL.
+This marks end of linked list.
+
+[IMPORTANT]
+Each recursive call creates exactly one node.
+
+[IMPORTANT]
+Head is returned by the first recursive call.
+
+[COMMON MISTAKE]
+Forgetting to assign:
+temp->next = recursive_call
+
+[INTERVIEW POINT]
+Recursive solution is elegant but uses extra stack space.
+Iterative solution avoids recursion stack.
+
+
+------------------------------------------------------------
+9. RECURSIVE VS ITERATIVE
+------------------------------------------------------------
+
+Recursive:
+- Cleaner code
+- Uses stack memory
+- Easy to understand conceptually
+
+Iterative:
+- No recursion stack
+- More memory efficient
+- Slightly longer code
+
+
+------------------------------------------------------------
+10. MAIN FUNCTION
+------------------------------------------------------------
+*/
+
+int main()
+{
+    int arr[] = {2, 4, 6, 8};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    Node* head = createLinkedList(arr, 0, size);
+
+    printList(head);
+
+    return 0;
+}
