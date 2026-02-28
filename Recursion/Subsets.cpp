@@ -191,12 +191,12 @@ Total space for storing subsets = O(n * 2^n)
 
 void printSubsets(vector<vector<int>>& ans)
 {
-    for(auto subset : ans)
+    for(int i=0;i<ans.size();i++)
     {
         cout << "{ ";
-        for(int val : subset)
+        for(int j = 0;j<ans[i].size();j++)
         {
-            cout << val << " ";
+            cout << ans[i][j] << " ";
         }
         cout << "}" << endl;
     }
