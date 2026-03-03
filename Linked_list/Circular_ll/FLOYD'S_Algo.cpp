@@ -1,7 +1,7 @@
 /*
 ============================================================
-LINKED LIST CYCLE DETECTION AND REMOVAL
-(FLOYD’S CYCLE DETECTION ALGORITHM)
+REMOVE LOOP IN LINKED LIST
+(FLOYD’S CYCLE DETECTION – OPTIMAL O(1) SPACE)
 ============================================================
 */
 
@@ -11,182 +11,126 @@ using namespace std;
 
 /*
 ------------------------------------------------------------
-1. PROBLEM STATEMENT
-------------------------------------------------------------
-
-1) Detect whether a linked list contains a cycle.
-2) If a cycle exists, remove it.
-
-A cycle exists if a node’s next pointer
-points to a previous node instead of NULL.
-
-Example:
-
-1 -> 2 -> 3 -> 4 -> 5
-              ^     |
-              |_____|
-
-The last node points back to node 3.
-*/
-
-
-/*
-------------------------------------------------------------
-2. NODE STRUCTURE
+1. NODE STRUCTURE
 ------------------------------------------------------------
 */
 
-class Node
-{
+class Node {
 public:
     int data;
     Node* next;
 
-    Node(int val)
-    {
+    Node(int val) {
         data = val;
-        next = NULL;
+        next = nullptr;
     }
 };
 
 
 /*
 ------------------------------------------------------------
-3. DETECT CYCLE (FLOYD’S ALGORITHM)
+2. PROBLEM STATEMENT
 ------------------------------------------------------------
 
-Use two pointers:
+Given the head of a singly linked list,
+remove the loop if it exists.
 
-slow -> moves 1 step
-fast -> moves 2 steps
+If no loop is present, do nothing.
 
-If cycle exists:
-They will eventually meet.
-
-If fast reaches NULL:
-No cycle exists.
-
-Time Complexity: O(n)
-Space Complexity: O(1)
+Important:
+- Do not use extra space
+- Time complexity should be O(n)
 */
-
-bool detectCycle(Node* head)
-{
-    if(head == NULL)
-        return false;
-
-    Node* slow = head;
-    Node* fast = head;
-
-    while(fast != NULL && fast->next != NULL)
-    {
-        slow = slow->next;
-        fast = fast->next->next;
-
-        if(slow == fast)
-            return true;
-    }
-
-    return false;
-}
 
 
 /*
 ------------------------------------------------------------
-4. FIND STARTING NODE OF CYCLE
+3. COMPLETE LOGIC FLOW
 ------------------------------------------------------------
 
-After slow and fast meet:
+PHASE 1: Detect Cycle (Floyd’s Algorithm)
 
-1. Move slow to head.
-2. Move both one step at a time.
-3. Meeting point is start of cycle.
+    slow moves 1 step
+    fast moves 2 steps
 
-Why this works?
+If they meet → loop exists
+If fast reaches NULL → no loop
 
-Distance from head to cycle start
-equals distance from meeting point
-to cycle start.
+
+PHASE 2: Find Start of Loop
+
+    Move slow to head
+    Move both one step at a time
+    They meet at starting node of loop
+
+
+PHASE 3: Remove Loop
+
+    From loop start, traverse until
+    node whose next == loop start
+
+    Break by:
+    temp->next = NULL
 */
 
-Node* findCycleStart(Node* head)
-{
-    if(head == NULL)
-        return NULL;
 
-    Node* slow = head;
-    Node* fast = head;
+class Solution {
+public:
 
-    bool hasCycle = false;
+    void removeLoop(Node* head) {
 
-    while(fast != NULL && fast->next != NULL)
-    {
-        slow = slow->next;
-        fast = fast->next->next;
+        if(head == NULL || head->next == NULL)
+            return;
 
-        if(slow == fast)
-        {
-            hasCycle = true;
-            break;
+        Node* slow = head;
+        Node* fast = head;
+
+        // STEP 1: Detect loop
+        while(fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if(slow == fast)
+                break;
         }
+
+        // STEP 2: If no loop
+        if(fast == NULL || fast->next == NULL)
+            return;
+
+        // STEP 3: Move slow to head
+        slow = head;
+
+        // STEP 4: Find starting node of loop
+        while(slow != fast) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+
+        // Now slow == fast == start of loop
+
+        // STEP 5: Find last node of loop
+        Node* temp = slow;
+        while(temp->next != slow) {
+            temp = temp->next;
+        }
+
+        // STEP 6: Break the loop
+        temp->next = NULL;
     }
-
-    if(!hasCycle)
-        return NULL;
-
-    slow = head;
-
-    while(slow != fast)
-    {
-        slow = slow->next;
-        fast = fast->next;
-    }
-
-    return slow;
-}
+};
 
 
 /*
 ------------------------------------------------------------
-5. REMOVE CYCLE
-------------------------------------------------------------
-
-Steps:
-
-1. Find cycle start node.
-2. Traverse cycle until reaching node
-   whose next points to cycle start.
-3. Set its next to NULL.
-*/
-
-void removeCycle(Node* head)
-{
-    Node* start = findCycleStart(head);
-
-    if(start == NULL)
-        return;
-
-    Node* temp = start;
-
-    while(temp->next != start)
-    {
-        temp = temp->next;
-    }
-
-    temp->next = NULL;
-}
-
-
-/*
-------------------------------------------------------------
-6. DRY RUN (IMPORTANT CONCEPT)
+4. WHY THIS WORKS (INTUITION)
 ------------------------------------------------------------
 
 Let:
 
-Distance from head to cycle start = a
-Cycle length = b
-Distance from cycle start to meeting point = c
+a = distance from head to loop start
+b = length of loop
+c = distance from loop start to meeting point
 
 When slow and fast meet:
 
@@ -195,101 +139,104 @@ When slow and fast meet:
 Solving:
 a = k*b - c
 
-This proves that moving slow to head
-and moving both one step
-will meet at cycle start.
+This proves:
+
+Distance from head to loop start
+equals
+Distance from meeting point to loop start
+
+Therefore:
+Reset slow to head
+Move both one step
+They meet at loop start.
 */
 
 
 /*
 ------------------------------------------------------------
-7. PRINT FUNCTION
-------------------------------------------------------------
-*/
-
-void printList(Node* head)
-{
-    Node* temp = head;
-    while(temp != NULL)
-    {
-        cout << temp->data << " -> ";
-        temp = temp->next;
-    }
-    cout << "NULL" << endl;
-}
-
-
-/*
-------------------------------------------------------------
-8. CREATE SAMPLE LIST WITH CYCLE
-------------------------------------------------------------
-*/
-
-Node* createListWithCycle()
-{
-    Node* head = new Node(1);
-    head->next = new Node(2);
-    head->next->next = new Node(3);
-    head->next->next->next = new Node(4);
-    head->next->next->next->next = new Node(5);
-
-    // Create cycle (5 -> 3)
-    head->next->next->next->next->next = head->next->next;
-
-    return head;
-}
-
-
-/*
-------------------------------------------------------------
-9. TIME COMPLEXITY
+5. SPECIAL EDGE CASES ANALYSIS
 ------------------------------------------------------------
 
-Detection: O(n)
-Finding start: O(n)
-Removal: O(n)
+CASE 1: No loop
+Fast reaches NULL → function returns safely.
 
-Overall: O(n)
+CASE 2: Loop starts at head
+Example:
+1 -> 2 -> 3 -> 1
 
+After detection:
+slow reset to head.
+They meet at head.
+Loop removed correctly.
 
-------------------------------------------------------------
-10. SPACE COMPLEXITY
-------------------------------------------------------------
+CASE 3: Single node with loop
+1 -> 1
 
-Only pointers used.
+Works correctly because:
+slow == fast immediately.
+Loop start found.
+temp->next set to NULL.
 
-Auxiliary Space: O(1)
+CASE 4: Entire list forms a cycle
+Still works correctly.
 */
 
 
 /*
 ------------------------------------------------------------
-11. MAIN FUNCTION
+6. IMPORTANT INTERVIEW POINTS
 ------------------------------------------------------------
+
+1) Never check only fast != NULL
+   Always check fast->next also.
+
+2) Do NOT modify head pointer.
+
+3) Do not use unordered_map (unless asked).
+
+4) Floyd’s algorithm is optimal.
+
+
+Common Mistake:
+Breaking loop at meeting point instead of loop start.
+That is incorrect.
 */
 
-int main()
-{
-    Node* head = createListWithCycle();
 
-    if(detectCycle(head))
-        cout << "Cycle Detected" << endl;
-    else
-        cout << "No Cycle" << endl;
+/*
+------------------------------------------------------------
+7. COMPLEXITY ANALYSIS
+------------------------------------------------------------
 
-    Node* start = findCycleStart(head);
+Detection Phase        → O(n)
+Finding loop start     → O(n)
+Finding last node      → O(n)
 
-    if(start != NULL)
-        cout << "Cycle starts at node with value: " 
-             << start->data << endl;
+Worst Case             → O(n)
 
-    removeCycle(head);
+Auxiliary Space        → O(1)
 
-    cout << "After Removing Cycle:" << endl;
-    printList(head);
+This is optimal.
+*/
 
-    return 0;
-}
+
+/*
+------------------------------------------------------------
+8. COMPARISON WITH OTHER METHODS
+------------------------------------------------------------
+
+Using HashMap:
+Time  → O(n)
+Space → O(n)
+
+Using Vector:
+Time  → O(n^2)
+Space → O(n)
+
+Floyd’s Algorithm:
+Time  → O(n)
+Space → O(1)  ← BEST
+*/
 
 
 /*
