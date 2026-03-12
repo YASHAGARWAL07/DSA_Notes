@@ -1,0 +1,203 @@
+/*
+============================================================
+SLIDING WINDOW USING QUEUE
+============================================================
+*/
+
+#include <iostream>
+#include <queue>
+using namespace std;
+
+
+/*
+------------------------------------------------------------
+1. PROBLEM STATEMENT
+------------------------------------------------------------
+
+Given an array and window size k,
+print all subarrays of size k.
+
+Example:
+
+arr = [2,3,1,5,6,7,8]
+k = 3
+
+Output:
+
+2 3 1
+3 1 5
+1 5 6
+5 6 7
+6 7 8
+*/
+
+
+/*
+------------------------------------------------------------
+2. INTUITION
+------------------------------------------------------------
+
+Sliding window means moving a fixed-size
+window across the array.
+
+Example:
+
+[2 3 1] 5 6 7 8
+ 2 [3 1 5] 6 7 8
+ 2 3 [1 5 6] 7 8
+ 2 3 1 [5 6 7] 8
+ 2 3 1 5 [6 7 8]
+
+Each window contains k elements.
+*/
+
+
+/*
+------------------------------------------------------------
+3. APPROACH
+------------------------------------------------------------
+
+Step 1:
+Insert first k-1 elements into queue.
+
+Step 2:
+Start loop from index k-1.
+
+Step 3:
+Push new element into queue.
+
+Step 4:
+Print queue contents (window).
+
+Step 5:
+Pop front element to slide window.
+*/
+
+
+/*
+------------------------------------------------------------
+4. DISPLAY FUNCTION
+------------------------------------------------------------
+*/
+
+void display(queue<int> q)
+{
+    while(!q.empty())
+    {
+        cout << q.front() << " ";
+        q.pop();
+    }
+    cout << endl;
+}
+
+
+/*
+------------------------------------------------------------
+5. MAIN IMPLEMENTATION
+------------------------------------------------------------
+*/
+
+int main()
+{
+    int arr[] = {2,3,1,5,6,7,8};
+
+    int n = 7;
+    int k = 3;
+
+    queue<int> q;
+
+    // push first k-1 elements
+    for(int i = 0; i < k-1; i++)
+        q.push(arr[i]);
+
+    // sliding window
+    for(int i = k-1; i < n; i++)
+    {
+        q.push(arr[i]);
+
+        display(q);
+
+        q.pop();   // remove first element
+    }
+
+    return 0;
+}
+
+
+/*
+------------------------------------------------------------
+6. DRY RUN
+------------------------------------------------------------
+
+arr = [2,3,1,5,6,7,8]
+k = 3
+
+Initial queue:
+[2,3]
+
+Step 1
+Push 1
+Queue = [2,3,1]
+
+Print → 2 3 1
+Pop 2
+
+Queue = [3,1]
+
+Step 2
+Push 5
+
+Queue = [3,1,5]
+
+Print → 3 1 5
+Pop 3
+
+...
+*/
+
+
+/*
+------------------------------------------------------------
+7. TIME COMPLEXITY
+------------------------------------------------------------
+
+Loop runs n times
+
+Time Complexity:
+
+O(n*k)  (because display prints k elements)
+*/
+
+
+/*
+------------------------------------------------------------
+8. SPACE COMPLEXITY
+------------------------------------------------------------
+
+Queue stores k elements
+
+Space Complexity:
+
+O(k)
+*/
+
+
+/*
+------------------------------------------------------------
+9. IMPORTANT CONCEPT
+------------------------------------------------------------
+
+Sliding Window is used in problems like:
+
+• Maximum in every window
+• First negative number in window
+• Longest substring problems
+• Sliding window maximum
+*/
+
+
+/*
+============================================================
+END OF FILE
+============================================================
+*/
