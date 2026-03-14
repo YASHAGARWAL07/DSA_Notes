@@ -40,7 +40,7 @@ Each directory contains **concept explanations, implementations, and example pro
 
 ---
 
-##Topics Covered
+## Topics Covered
 
 * Time Complexity & Big-O Analysis
 * Arrays & 2D Matrices
