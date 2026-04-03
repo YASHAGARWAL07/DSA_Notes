@@ -1,0 +1,178 @@
+/*
+============================================================
+ROOT EQUALS SUM OF CHILDREN
+============================================================
+*/
+
+#include <iostream>
+using namespace std;
+
+
+/*
+------------------------------------------------------------
+1. PROBLEM STATEMENT
+------------------------------------------------------------
+
+Given the root of a binary tree with exactly 3 nodes:
+
+• Root node
+• Left child
+• Right child
+
+Return TRUE if:
+
+root->val == left->val + right->val
+
+Otherwise return FALSE
+
+Example:
+
+        10
+       /  \
+      4    6
+
+Check:
+
+10 == 4 + 6 → TRUE
+*/
+
+
+/*
+------------------------------------------------------------
+2. INTUITION
+------------------------------------------------------------
+
+This is a very simple comparison problem.
+
+We just need to:
+
+• Take value of root
+• Take values of left and right child
+• Check if:
+
+root value = left + right
+
+No traversal needed
+*/
+
+
+/*
+------------------------------------------------------------
+3. APPROACH / ALGORITHM
+------------------------------------------------------------
+
+STEP 1:
+Access root->val
+
+STEP 2:
+Access root->left->val
+
+STEP 3:
+Access root->right->val
+
+STEP 4:
+Check condition:
+
+if (root == left + right)
+    return true
+else
+    return false
+*/
+
+
+/*
+============================================================
+4. C++ IMPLEMENTATION
+============================================================
+*/
+
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode(int x) {
+        val = x;
+        left = right = NULL;
+    }
+};
+
+
+class Solution {
+public:
+
+    bool checkTree(TreeNode* root) {
+
+        return (root->val == root->left->val + root->right->val);
+    }
+};
+
+
+/*
+------------------------------------------------------------
+5. DRY RUN
+------------------------------------------------------------
+
+Tree:
+
+        10
+       /  \
+      4    6
+
+Step 1:
+root = 10
+
+Step 2:
+left = 4
+right = 6
+
+Step 3:
+4 + 6 = 10
+
+Step 4:
+10 == 10 → TRUE
+*/
+
+
+/*
+------------------------------------------------------------
+6. TIME COMPLEXITY
+------------------------------------------------------------
+
+O(1)
+
+Only constant operations
+*/
+
+
+/*
+------------------------------------------------------------
+7. SPACE COMPLEXITY
+------------------------------------------------------------
+
+O(1)
+
+No extra space used
+*/
+
+
+/*
+------------------------------------------------------------
+8. IMPORTANT INTERVIEW POINTS
+------------------------------------------------------------
+
+1) Tree always has exactly 3 nodes
+
+2) No recursion or traversal needed
+
+3) Direct comparison problem
+
+4) Always check NULL safety in real scenarios
+   (though constraints guarantee children exist)
+
+5) Good warm-up / basic tree problem
+
+------------------------------------------------------------
+END OF FILE
+------------------------------------------------------------
+*/
