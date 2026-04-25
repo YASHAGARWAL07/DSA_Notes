@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/yashagarwal/DSA/GRAPHS/Adjancy_list/output/undirected_weighted_graph'
+relocations:     []
+...
