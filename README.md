@@ -6,7 +6,7 @@ This repository documents my learning journey while strengthening core problem-s
 
 ---
 
-## 🚀 Purpose of This Repository
+## Purpose of This Repository
 
 This repository is designed to:
 
